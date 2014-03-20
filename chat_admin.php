@@ -7,13 +7,9 @@ $old=new old(); //oldalelemek betöltése
 
 
 switch($p['modul']){
-
 	case 'szobalist':
 		$tomb=chat::getSzobaListaAjax();
 		$t=array();
-		
-		//d::addText('Chat',$tomb);
-		//d::send(true);
 		
 		foreach($tomb as $key=>$val){
 			$t[$key] ="<div class='szl_sor ". (($key%2)==0? 'div_odd ':'div_even') ."' >";

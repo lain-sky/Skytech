@@ -2,12 +2,8 @@
 ob_start();
 define('SZINT',666);
 require_once('rendszer/mag.php');
-
-
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
-
-
 
 if(SYSTEM_OFF===true){
 	echo Oldal_hiba;

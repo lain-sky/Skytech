@@ -5,9 +5,7 @@ require_once('rendszer/mag.php');
 require_once('rendszer/torrent.functions.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
-
 $torrent=new Torrent();
-
 
 
 if(empty($g['id']) || $torrent->checkTorrentById($g['id'])===false){
@@ -31,16 +29,7 @@ ob_clean();
 	unset($dict['value']['nodes']);
 	$dict=bdec(benc($dict));
 	$data=benc($dict);
-	list($ann, $info) = dict_check($dict, "announce(string):info"); 
-/*
-$dict['value']['announce']=bdec(benc_str($TBDEV['announce_urls'][0] )); // change announce url to local
-
-$dict['value']['info']['value']['private']=bdec('i1e'); // add private tracker flag
-
-$dict['value']['info']['value']['source']=bdec(benc_str( "{$TBDEV['baseurl']} {$TBDEV['site_name']}")); // add link for bitcomet users
-*/
-
- 
+	list($ann, $info) = dict_check($dict, "announce(string):info");  
 
 	header ("Expires: Tue, 1 Jan 1980 00:00:00 GMT");
 	header ("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");

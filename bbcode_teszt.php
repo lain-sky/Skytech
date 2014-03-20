@@ -19,8 +19,8 @@ $segedlet=array();
 foreach(db::elso_sor() as $key=>$val){
 	$segedlet[$key]=($key=='text')? bb::bbdecode($val) : $val;
 }
-$smarty->assign('segedlet',$segedlet);
 
+$smarty->assign('segedlet',$segedlet);
 $smarty->assign('OLDAL',$OLDAL);
 $smarty->display('bbcode_teszt.tpl');
 ob_end_flush ();

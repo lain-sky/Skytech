@@ -5,12 +5,6 @@ require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
-/*
-if( $USER['rang']!= 10 ){
-	die('karbantartás');
-}
-*/
-
 
 $aktualis_oldal=$_SERVER["SCRIPT_NAME"]."?id=".$g['id']."&amp;page=".$g['page'];
 $smarty->assign('oldal_cime',$aktualis_oldal);
@@ -46,7 +40,6 @@ if( !empty($g['letolt']) ){
 	exit;
 }
 
-
 //ellenõrizzük, hogy van olyn topik amit kér az user
 if(!is_numeric($g['id'])) $OLDAL[]=hiba_uzi('A kért topik nem létezik');
 else{
@@ -64,7 +57,6 @@ else{
 		if($USER['rang'] < JOG_FORUM_HOZZASZOLAS ) $ujhsz=false;
 		$smarty->assign('ujhsz',$ujhsz);
 
-		
 
 		/************/
 		/* Rögzítõk */

@@ -5,15 +5,8 @@ require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
-/*
-if( $USER['rang']!= 10 ){
-	die('karbantartás');
-}
-*/
-
 
 $smarty->assign('oldal_cime',$_SERVER['SCRIPT_NAME']);
-
 
 if(empty($g['keres'])){
 $pari="

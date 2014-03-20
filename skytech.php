@@ -6,10 +6,8 @@ $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
 
-
 //csak 8 vagy annál nagyobb user léphet be
 if( !in_array( $USER['rang'] , array(8,9,10) ) ){
-        
         header("HTTP/1.1 404 Not Found");  
         header("Status: 404 Not Found"); 
         header("location: 404.php");
@@ -17,11 +15,9 @@ if( !in_array( $USER['rang'] , array(8,9,10) ) ){
                 
 }
 
-
 define('MODI_LOGIN_NAME', 'monika' );
 define('ADMIN_LOGIN_NAME', 'andika' );
 define('TULAJ_LOGIN_NAME', 'tundi');
-
 
 // login ablak
 $valid_passwords = array ( 
@@ -98,8 +94,6 @@ if( empty($r['modul']) ){
         $r['modul']='uzenofal';
 }
 
-
-
 $validModul['uzenofal']=                array(8=>true, 9=>true, 10=>true );
 $validModul['uzenofal_uj']=     		array(8=>true, 9=>true, 10=>true );
 $validModul['uzenofal_mod']=    		array(8=>true, 9=>true, 10=>true );
@@ -122,8 +116,6 @@ $validModul['falidLoginLogClear']=		array(8=>true, 9=>true, 10=>true );
 $validModul['chat_log']=                array(8=>true, 9=>true, 10=>true );
 $validModul['chat_log_del']=            array(8=>true, 9=>true, 10=>true );
 $validModul['chat_log_kiurit']=         array(8=>true, 9=>true, 10=>true );
-
-
 
 $validModul['temakor_lista']=   		array(8=>false, 9=>true, 10=>true );
 $validModul['temakor_uj']=              array(8=>false, 9=>true, 10=>true );
@@ -151,12 +143,10 @@ $validModul['doc_del']=                 array(8=>false, 9=>false, 10=>true );
 $validModul['level_uj']=                array(8=>false, 9=>false, 10=>true );
 $validModul['level_send']=              array(8=>false, 9=>false, 10=>true );
 
-
 $validModul['warn_lista']=              array(8=>true, 9=>true, 10=>true );
 $validModul['warn_uj']=                 array(8=>true, 9=>true, 10=>true );
 $validModul['warn_save']=               array(8=>true, 9=>true, 10=>true );
 $validModul['warn_del']=                array(8=>false, 9=>true, 10=>true );
-
 
 $validModul['ban_lista']=               array(8=>true, 9=>true, 10=>true );
 $validModul['ban_uj']=                  array(8=>false, 9=>true, 10=>true );
@@ -168,11 +158,9 @@ $validModul['chat_del_szoba']=  		array(8=>false, 9=>true, 10=>true );
 $validModul['chat_mod_szoba']=  		array(8=>false, 9=>true, 10=>true );
 $validModul['chat_szoba']=              array(8=>true, 9=>true, 10=>true );
 
-
 $validModul['user_add']=                array(8=>false, 9=>true, 10=>true );
 $validModul['user_mod']=                array(8=>false, 9=>true, 10=>true );
 $validModul['user_save']=               array(8=>false, 9=>true, 10=>true );
-
 
 $validModul['regfalid_lista']=          array(8=>false, 9=>true, 10=>true );
 $validModul['regfalid_resend']=         array(8=>false, 9=>true, 10=>true );
@@ -180,7 +168,6 @@ $validModul['regfalid_confirm']=        array(8=>false, 9=>true, 10=>true );
 
 $validModul['csoportos_meghivas']=      array(8=>false, 9=>true, 10=>true );
 $validModul['csoportos_send']=          array(8=>false, 9=>true, 10=>true );
-
 
 $validModul['szavazas_uj']=             array(8=>false, 9=>false, 10=>true );
 $validModul['szavazas_lista']=          array(8=>false, 9=>false, 10=>true );
@@ -191,7 +178,6 @@ $validModul['szavazas_del']=            array(8=>false, 9=>false, 10=>true );
 $validModul['pont_edit']=               array(8=>false, 9=>true, 10=>true );
 $validModul['pont_save']=               array(8=>false, 9=>true, 10=>true );
 $validModul['pont_list']=               array(8=>false, 9=>true, 10=>true );
-
 
 $validModul['torrent_setting']=         array(8=>false, 9=>false, 10=>true );
 $validModul['torrent_save']=            array(8=>false, 9=>false, 10=>true );
@@ -205,9 +191,6 @@ $validModul['varsave']=                 array(8=>false, 9=>false, 10=>true );
 
 $validModul['flush_cache']=             array(8=>false, 9=>true, 10=>true );
 
-
-
-
 if( $validModul[ $r['modul'] ][$USER['rang']]!== true ){
         die('tiltott modul');
 }
@@ -216,23 +199,17 @@ define('ADMIN_MODULES_DIR',CORE_DIR . 'adminModuls/');
 define('ADMIN_TEMPLATES_DIR', SABLON_DIR . 'adminTemplate/');
 define('SZINT_ADMIN', 951 );
 
-
 require_once(CLASS_DIR . 'basemodel.class.php');
 
-
-
 switch($r['modul']){
-
         /*** HIREK ***/
         case 'hir_lista':
         case 'hir_uj':
         case 'hir_mod':
         case 'hir_del':
         case 'hir_save':
-                require_once( ADMIN_MODULES_DIR.'hirModule.php');
-                
+                require_once( ADMIN_MODULES_DIR.'hirModule.php');    
         break;
-        
         
         /*** FÓRUM ***/
         case 'temakor_lista':
@@ -245,13 +222,10 @@ switch($r['modul']){
         case 'topik_mod':
         case 'topik_save':
         case 'topik_del':
-        
                 require_once( ADMIN_MODULES_DIR.'forumModule.php');
         break;
         
-        
         /*** SZAVAZAS ***/
-        
         case 'szavazas_lista':
         case 'szavazas_uj':
         case 'szavazas_mod':
@@ -260,18 +234,14 @@ switch($r['modul']){
                 require_once( ADMIN_MODULES_DIR.'szavazasModule.php');
         break;
         
-        
-        
         /*** Dokumentumok ***/
-        
         case 'doc_lista':
         case 'doc_uj':
         case 'doc_mod':
         case 'doc_del':
         case 'doc_save':
                 $smarty->assign('docType',$DOKUMNETUM_TIPUSOK);
-                require_once( ADMIN_MODULES_DIR.'docModule.php');
-                
+                require_once( ADMIN_MODULES_DIR.'docModule.php'); 
         break;
         
         case 'level_uj':
@@ -279,9 +249,7 @@ switch($r['modul']){
                 require_once( ADMIN_MODULES_DIR.'levelModule.php');
         break;
         
-        
         /*** Statisztika ***/
-        
         case 'oldal_stats':     
         case 'user_stats':
         case 'tracker_stats':           
@@ -292,7 +260,6 @@ switch($r['modul']){
         case 'cheat_user':
                 require_once( ADMIN_MODULES_DIR.'statsModule.php');
         break;
-        
         
         /*** CHAT LOG ***/
         case 'chat_log':
@@ -312,9 +279,7 @@ switch($r['modul']){
                 require_once( ADMIN_MODULES_DIR.'uzenofalModule.php');
         break;
         
-        
         /*** SYS_LOG ***/
-        
         case 'syslog':
         case 'pontlog':
         case 'falidLoginLog':
@@ -322,17 +287,13 @@ switch($r['modul']){
                         require_once( ADMIN_MODULES_DIR.'sysModule.php');
         break;
         
-        
         /*** WARN ***/
         case 'warn_lista':
         case 'warn_uj':
         case 'warn_del':
         case 'warn_save':
                 require_once( ADMIN_MODULES_DIR.'warnModule.php');
-                
         break;
-        
-        
         
         /*** BAN ***/
         case 'ban_lista':
@@ -340,12 +301,9 @@ switch($r['modul']){
         case 'ban_del':
         case 'ban_save':
                 require_once( ADMIN_MODULES_DIR.'banModule.php');
-                
         break;
         
-        
         /*** Chat ***/
-        
         case 'chat_mod_szoba':
         case 'chat_szoba':
         case 'chat_del_szoba':
@@ -353,15 +311,12 @@ switch($r['modul']){
                 require_once( ADMIN_MODULES_DIR.'chatModule.php');
         break;
         
-        
         /*** USER ***/
-        
         case 'user_add':
         case 'user_mod':
         case 'user_save':
                 require_once( ADMIN_MODULES_DIR.'userModule.php');
         break;
-        
         
         /*** REG UJRA ***/
         case 'regfalid_lista':
@@ -372,26 +327,20 @@ switch($r['modul']){
                 require_once( ADMIN_MODULES_DIR.'regfalidModule.php');
         break;
         
-        
         /*** PONTOK ***/
-        
         case 'pont_edit':
         case 'pont_save':
         case 'pont_list':
                 require_once( ADMIN_MODULES_DIR.'pontModule.php');
         break;
         
-        
         /*** TORRENT ***/
-        
         case 'torrent_save':
         case 'torrent_setting':
                 require_once( ADMIN_MODULES_DIR.'torrentModule.php');
         break;
         
-        
         /*** RENDSZER ADMIN ***/
-        
         case 'oldal_setting':
         case 'tracker_setting':
         case 'cron_setting':
@@ -401,15 +350,12 @@ switch($r['modul']){
                 require_once( ADMIN_MODULES_DIR.'varModule.php');
         break;
         
-        
         /** CACHE **/
         case 'flush_cache':
                 require_once( ADMIN_MODULES_DIR.'cacheModule.php');
         break;
-
-
-
 }
+
 $smarty->assign('subtemplate', $smarty->_tpl_vars['modul']);
 $smarty->assign('rangok',$RANGOK);
 $smarty->assign('lap_cime',$_SERVER['SCRIPT_NAME']);

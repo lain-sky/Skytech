@@ -59,23 +59,11 @@ if(!empty($_POST['nu_name']) || !empty($_POST['nu_email'])){
 
 		//email kiküldése
 		require_once( CLASS_DIR . 'mailer.class.php');
-		//$mail=new Mailer();
-		//$mail->address= $pemail;
-		//$mail->body= reg_mail(array('name'=>$pname,'pass'=>$vadat['password'],'ellenor'=>$ellenor));
-		//$mail->subject= OLDAL_NEVE." - regisztráció megerõsítése";
 		if (sendEmail($pemail, $pname, OLDAL_NEVE." - regisztráció megerõsítése", reg_mail(array('name'=>$pname,'pass'=>$vadat['password'],'ellenor'=>$ellenor))) )
 			$mailUzi=uzi('Sikeres regisztráció',"Gratulálunk, sikeresen regisztráltad magad. Hamarosan egy megerõsítõ e-mail érkezik az e-mail címedre (<span class=\"highlight\">".$pemail."</span>). A megerõsítés után bejelentkezhetsz. Amenniyben nem kapnád meg a mailt, kérlek jelezd a staff@sky-tech.hu címen!");
 		else
 			$mailUzi=hiba_uzi('Sikertelen regisztráció!<br />Kérlek jelezd a staff@sky-tech.hu -n');
-		/*		
-		if( $mail->send() == true ){
-			$mailUzi=uzi('Sikeres regisztráció',"Gratulálunk, sikeresen regisztráltad magad. Hamarosan egy megerõsítõ e-mail érkezik az e-mail címedre (<span class=\"highlight\">".$pemail."</span>). A megerõsítés után bejelentkezhetsz. Amenniyben nem kapnád meg a mailt, kérlek jelezd a staff@sky-tech.hu címen!");
-		}
-		else{
-			$mailUzi=hiba_uzi('Sikertelen regisztráció!<br />Kérlek jelezd a staff@sky-tech.hu -n');
-		}
-echo reg_mail(array('name'=>$pname,'pass'=>$vadat['password'],'ellenor'=>$ellenor));
-		*/
+
 		//ha meghivoval került be
 		if(!empty($_SESSION['meghivo']) && is_numeric($_SESSION['meghivo']) ){
 			db::futat("update meghivo set meghivott='%d' where mid='%d' ",$uid,$_SESSION['meghivo']);
@@ -103,11 +91,7 @@ elseif(!empty($_POST['new_pass_email'])){
 		db::futat($pari,$tomb[0]['uid'],time(),md5($ellenor));
 
 		//indul a mail
-		//$m_subject = Oldal_neve." - elfelejtett jelszó";
-		//$m_headers  = "From: ".Oldal_vakmail."\r\nContent-type: text/html\r\n";
-		//$mail_szoveg=elfelejtet_jelszo_mail(array('name'=>$USER['name'],'ellenor'=>$ellenor));
 		sendEmail($_POSR['new_pass_email'], $_POSR['new_pass_email'], OLDAL_NEVE." - elfelejtett jelszó", elfelejtet_jelszo_mail(array('name'=>$USER['name'],'ellenor'=>$ellenor)));
-		///////////////////mail($_POSR['new_pass_email'], $m_subject, $mail_szoveg, $m_headers);		
 		$smarty->assign('uzi',uzi('Sikeres jelszó emlékesztetõ',"Hamarosan egy megerõsítõ e-mail érkezik az e-mail címedre (<span class=\"highlight\">".$_POSR['new_pass_email']."</span>). A megerõsítés után megkapod az új véletlen jelszavadat.<BR>".elfelejtet_jelszo_mail(array('name'=>$USER['name'],'ellenor'=>$ellenor))));
 	}
 }
@@ -189,12 +173,7 @@ else{
 		// hehe nincs reg :)
 		$smarty->assign('uzi','Regisztráció lezárva, csak meghívóval lehet bekerülni!');
 	}
-	/*
-	if( $_GET['debug']!= 'aaa' ){
-		$smarty->assign('uzi','Regisztráció átmenetileg lezárva, nyitás kb: 05.03 20:00<br /><br />');
-	}
-	*/
-	
+
 	// reg form kiirása
 	$smarty->display('regisztracio.tpl');
 }

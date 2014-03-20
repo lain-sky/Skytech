@@ -9,9 +9,7 @@ $old=new old(); //oldalelemek betöltése
 /** staff dolgok **/
 if( !empty($_POST['modul']) && $USER['rang'] >= STAFF_MAIL_MIN_RANG ){
 require_once( CLASS_DIR . 'staff.class.php');
-	
 	switch( $_POST['modul'] ){
-	
 		case 'staffLevelBovebb':
 			$levelId=$_POST['level'];
 			$levelek[]= array_shift( Staff::loadLevel($levelId) );
@@ -30,11 +28,6 @@ require_once( CLASS_DIR . 'staff.class.php');
 	echo $smarty->fetch('staff_admin.tpl');
 	die();
 }
-
-
-
-
-
 
 $vezerlo_kepek=array(
 	array(

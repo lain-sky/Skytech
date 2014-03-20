@@ -88,8 +88,6 @@ if(!empty($p) && !empty($f)){
 		$shortfname = $torrent_m = $matches[1];
 	}else $hiba[]="Nincs torrent fájl!";
 
-	
-
 	//nfo fájl ellenõrzés
 	if(!empty($f['tnfo']) && !empty($f['tnfo']["name"]) && !empty($f['tnfo']["tmp_name"])){
 		$nfoName=$f['tnfo']["name"];
@@ -99,8 +97,6 @@ if(!empty($p) && !empty($f)){
 		
 		if( in_array( $f['tnfo']['type'],$joNfoFileType  )!== true){
 			$hiba[]="Az nfo formátuma nem megfelelõ!";
-			d::addText('Hibás NFO fájl',$_FILES);
-			d::send(true);
 		}
 
 		if (!preg_match('/^(.+)\.nfo$/si', $nfoName, $nfomatches)){
@@ -111,8 +107,6 @@ if(!empty($p) && !empty($f)){
 			$nfoellen=true;
 		}
 	}
-
-	
 
 	if($p['tcene']=='yes'){
 		if($nfoellen!==true){
@@ -171,10 +165,6 @@ if(!empty($p) && !empty($f)){
 		
 		$tempInfoHash=md5( pack("H*", sha1($info["string"])) );
 		if( Torrent::isUnique( $tempInfoHash ) != true ){
-			d::addText('Duplikált torrent Hash',$tempInfoHash);
-			d::addText('Duplikált torrent',$_FILES);
-			d::send(true);
-			
 			$hiba[]='A torrent már az adatbázisunkban van!!';
 		}
 	}
@@ -228,11 +218,9 @@ if($USER['rang']>8 ){
 	$smarty->assign('admin_link','true');
 }
 
-
 $smarty->assign('tipusok',kategoria::getAll('kid,nev'));
 $smarty->assign('passkey',$torrent->getTrackerUrl());
 $smarty->assign('OLDAL',$OLDAL);
 $smarty->display('feltolt.tpl');
-
 ob_end_flush ();
 ?>

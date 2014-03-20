@@ -6,9 +6,9 @@ $belep=new belep(); // user belépés chek
 $torrent= new Torrent();
 $konyv= new KonyvJelzo();
 
+
 //aszinkron mûveletek
 switch($g['modul']){
-
 	case "hitelesit":
 		$tomb=array('admin_id'=>$USER['uid']);
 		$torrent->update($g['tid'],$tomb);
@@ -103,12 +103,9 @@ switch($g['modul']){
 	break;
 }
 
-
 $old=new old(); //oldalelemek betöltése
 // torrent adatainak módosítása
 if(is_numeric($g['modosit']) && ($USER['rang'] >= TORRENET_ADMIN_MIN_RANG || $torrent->getTulaj($g['modosit'])==$USER['uid']) ){	
-
-	
 	$tomb=$torrent->fullLoad(array("t.tid='".$g['modosit']."'"),'','',0);
 	$t=$tomb[0];
 	$smarty->assign('name',$t['name']);
@@ -193,6 +190,5 @@ if(!empty($p['admin_megj']) && is_numeric($p['tid']) && $USER['rang'] >= TORRENE
 	$smarty->assign('OLDAL',$OLDAL);
 	$smarty->display('letolt_admin.tpl');
 }
-
 ob_end_flush ();
 ?>

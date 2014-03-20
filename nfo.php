@@ -5,9 +5,6 @@ require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
-//@dl('gd.so');
-
-
 
 if(Nfo::check($g['id']) !==true){
 	die('Nincs meg az nfo file');

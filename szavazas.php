@@ -8,9 +8,7 @@ $old=new old(); //oldalelemek betöltése
 /**************/
 /* Rögzítések */
 /**************/
-
 if(!empty($p) && $USER['rang'] >= SZAVAZAS_ADMIN_MIN_RANG){
-
 	// új szavazás rögzítése
 	if($p['modmezo']=='uj'){
 		if(db::futat("insert into szavazas(cim,datum) values('%s',now())",$p['kerdes'])===true){
@@ -31,10 +29,8 @@ if(!empty($p) && $USER['rang'] >= SZAVAZAS_ADMIN_MIN_RANG){
 	// módosítások mentése
 
 	elseif($p['modmezo']=='mod' && is_numeric($p['modid'])){	
-
 		if(!empty($p['kerdes'])){
 			if(db::futat("update szavazas set cim='%s' where szid='%d'",$p['kerdes'],$p['modid'])===true){
-
 				//a régi mezõk bejárása
 				foreach($p['regi'] as $key=>$val){
 					// ha a régi mezõ tartalma be van állítva, akkor felülírja a régi adatokat
@@ -72,11 +68,6 @@ if(!empty($p) && $USER['rang'] >= SZAVAZAS_ADMIN_MIN_RANG){
 		if(db::futat("delete from szavazas where szid='%d'",$p['modid'])===true){
 			db::futat("delete from szavazas_elem where szid='%d'",$p['modid']);
 			db::futat("delete from szavazatok where szid='%d'",$p['modid']);
-			/*
-			$_SESSION['uzenet']=nyugta('A törlés sikerült');
-			header("Location:".$p['vissza']);
-			exit;
-			*/
 			die('ok');
 		}
 		else{
@@ -88,9 +79,7 @@ if(!empty($p) && $USER['rang'] >= SZAVAZAS_ADMIN_MIN_RANG){
 /************************/
 /* A szavazás mûveletek */
 /************************/
-
 if(!empty($g) && $USER['rang'] >= SZAVAZAS_ADMIN_MIN_RANG){
-
 	//a form feldolgozója
 	$smarty->assign('feldolgozo',$_SERVER["SCRIPT_NAME"]);
 	$smarty->assign('vissza',$g['vissza']);
