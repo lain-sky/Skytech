@@ -1,0 +1,3 @@
+/** created by szicsu ( szitama[@]gmial[.]com ) **/
+
+eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$(\'a.c\').b(5(){4=$(e).9(\'7\');$.8(\'d.f\',{l:4},5(3){0="[2]\\1";0+=3;0+="\\1[/2]\\1";$(\'#6\').i(0)});$(\'#6\').h(\'g\');k j});',22,22,'kesz|n|quote|text|hId|function|box_content|alt|post|attr||click|idezet_link|adatlap|this|php|slow|ScrollTo|val|false|return|idezet'.split('|'),0,{}))
