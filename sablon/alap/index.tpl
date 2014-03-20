@@ -25,8 +25,8 @@
         {/foreach}
 {'Hírek'|section_end}
 
+{*
 
-{* Szavazas section *}
 {'Szavazás'|section_open}
                 <div class="center">
                         <div class="poll">                              
@@ -74,32 +74,6 @@
                                         <img src="kinezet/smilies/excl.gif" title=":!:" class="kat copy" />                                             
                                 </td>
                         </tr>   
-                        <!--<tr>
-                                <td>Üzenet szine:
-                                        <select size="1" name="color" id="colors">
-                                                <option  value="alap">Alapérték</option>
-                                                
-                                                <option style="background-color: black; color: black;" value="black">Fekete</option>
-
-                                                <option style="background-color: white; color: white;" value="white">Fehér</option>
-                                                <option style="background-color: green; color: green;" value="green">Zöld</option>
-                                                <option style="background-color: maroon; color: maroon;" value="maroon">Gesztenye</option>
-                                                <option style="background-color: olive; color: olive;" value="olive">Oliva</option>
-                                                <option style="background-color: navy; color: navy;" value="navy">Mélykék</option>
-                                                <option style="background-color: purple; color: purple;" value="purple">Lila</option>
-
-                                                <option style="background-color: gray; color: gray;" value="gray">Szürke</option>
-                                                <option style="background-color: yellow; color: yellow;" value="yellow">Sárga</option>
-                                                <option style="background-color: lime; color: lime;" value="lime">Lime</option>
-                                                <option style="background-color: aqua; color: aqua;" value="aqua">Cián</option>
-                                                <option style="background-color: fuchsia; color: fuchsia;" value="fuchsia">Ciklámen</option>
-                                                <option style="background-color: silver; color: silver;" value="silver">Ezüst</option>
-
-                                                <option style="background-color: red; color: red;" value="red">Piros</option>
-                                                <option style="background-color: blue; color: blue;" value="blue">Kék</option>
-                                                <option style="background-color: teal; color: teal;" value="teal">Pávakék</option>
-                                        </select>
-                                </td>  -->
                                 
                                 <td>
                                         <input  src="kinezet/{$ipanel.smink}/btn_send.png" type="image" id="kuldes" />
@@ -117,11 +91,6 @@ var UZENOFAL_REFRESH_TIME = 4000;
 {'Chat'|section_end }
 
 
-
-
-
-
-{* Aktív user section *}
 {$akt_user|section_open}
 
         <p>
@@ -134,7 +103,7 @@ var UZENOFAL_REFRESH_TIME = 4000;
 
 {'Aktív user'|section_end}
 
-
+*}
 {* Általános statisztika *}
 {'Általános statisztika, bannerek'|section_open}
 
@@ -170,7 +139,7 @@ var UZENOFAL_REFRESH_TIME = 4000;
   </tr>
 </table>
 
-{*
+
 <p>&nbsp;</p>
 <div class="bar_rect">
 
@@ -189,7 +158,7 @@ var UZENOFAL_REFRESH_TIME = 4000;
   <div class="option_votes">&nbsp;</div>
 
 </div>  
-*}
+
 <br>
 
 

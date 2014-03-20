@@ -60,15 +60,15 @@
                         </form>                 
                 </div>
         {'Böngészõ'|section_end}
-        <div style="width:100%;text-align:center;padding-bottom:20px;clear:both;height:60px;">  
-                        <div style="width:470px;float:left;margin:auto;margin-left:18px;margin-right:5px;">
+        <!--<div style="width:100%;text-align:center;padding-bottom:20px;clear:both;height:60px;">  
+                       <div style="width:470px;float:left;margin:auto;margin-left:18px;margin-right:5px;">
                                 <script type="text/javascript"><!--
                                         google_ad_client = "pub-0288142790605333";
                                         /* 468x60, létrehozva 2008.11.12. */
                                         google_ad_slot = "4479421840";
                                         google_ad_width = 468;
                                         google_ad_height = 60;
-                                        //-->
+                                        //--
 
                                 </script><br>
                                 <img border=0 width="460" src='http://sky-tech.hu/kiado.png'></a>
@@ -79,7 +79,7 @@
                         <img border=0 width="460" src='http://sky-tech.hu/kiado.png'></a>
 
 
-                </div>
+                </div>*/-->
                 <div style="clear:both;"></div>
                 
                 <div id="pagertab_upper">
@@ -96,11 +96,11 @@
                                 <td class="t_head_name"><a href="{$rendezlink[1]}" title="Rendezés név szerint">Név</a></td>
                                 <td class="t_head_down"><a href="{$rendezlink[2]}" title="Rendezés a befejezett letöltések száma szerint">DL</a></td>
                                 <td class="t_head_meret"><a href="{$rendezlink[7]}" title="Rendezés a torrent mérete szerint">Méret</a></td>
-                                <td class="t_head_sele"><a href="{$rendezlink[3]}" title="Rendezés a seederek száma szerint">S</a>/
-                                <td class="t_head_sele1"><a href="{$rendezlink[4]}" title="Rendezés a leecherek száma szerint">L</a>
-                                <td class="t_head_sele2"><a href="{$rendezlink[5]}" title="Letöltések száma szerint">D</a>
-                                                                                
-                                </td>
+
+                                <td class="t_head_down"><a href="{$rendezlink[5]}" title="Letöltések száma szerint">D</a></td>
+                                <td class="t_head_down"><a href="{$rendezlink[3]}" title="Rendezés a seederek száma szerint">S</a></td>
+                                <td class="t_head_down"><a href="{$rendezlink[4]}" title="Rendezés a leecherek száma szerint">L</a></td>
+ 
                                 <td class="t_head_upby"><a href="{$rendezlink[6]}" title="Rendezés a feltöltõ neve szerint">Feltöltötte</a></td>
                         </tr>
                         {if count($torrentek) >0}
@@ -109,7 +109,7 @@
                                 {/foreach}
                         {else}
                         <tr>
-                                <td colspan="6"><br /><p class="red">Nincs találat!</p><br /></td>
+                                <td colspan="8"><br /><p class="red">Nincs találat!</p><br /></td>
                         </tr>
                         {/if}
                         

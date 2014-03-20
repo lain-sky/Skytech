@@ -50,7 +50,7 @@ class db{
 	* hibákat kezeli
 	*/
 	public function hiba($mit){
-		if(mysql_error()){
+		/*if(mysql_error()){
 			if(SQL_MAIL===true){
 				self::sqlMail($mit,mysql_error());
 			}
@@ -68,8 +68,8 @@ class db{
 			}
 			self::$eredmey=false;
 			return false;
-		}
-		return true;	
+		}*/
+		//return true;	
 	}
 
 	/**
@@ -110,6 +110,10 @@ class db{
 		
 		self::sqlFileLog();
 		return true;
+	}
+
+	public function hibasz(){
+		return mysql_error();
 	}
 
 	/**
@@ -212,10 +216,10 @@ class db{
 		$uzi.=var_export($_SERVER,true);
 	}
 	
-	
+
 	function sqlFileLog(){
 		$logolni=false;
-		
+/*		
 		if(SQL_QUERY_LOG == true){
 			if( strpos( self::$parancs, 'update' ) !== false ){
 				$logolni = true;
@@ -230,9 +234,8 @@ class db{
 			@error_log( $content , 3 , $file );		
 			
 		}
-		
+	*/	
 	}
-
 }//end class
 
 

@@ -1,9 +1,10 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 $torrent= new Torrent();
+$konyv= new KonyvJelzo();
 
 //aszinkron mûveletek
 switch($g['modul']){
@@ -43,11 +44,11 @@ switch($g['modul']){
 	break;		
 
 	case "addkonyv":
-		echo $torrent->addKonyv($g['tid']);
+		echo $konyv->addKonyv($g['tid']);
 	break;	
 
 	case "delkonyv":
-		echo $torrent->delKonyv($g['tid']);
+		echo $konyv->delKonyv($g['tid']);
 	break;
 
 	case "lapoz":

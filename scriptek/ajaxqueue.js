@@ -1,3 +1,67 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
+/**
+ * Ajax Queue Plugin
+ * 
+ * Homepage: http://jquery.com/plugins/project/ajaxqueue
+ * Documentation: http://docs.jquery.com/AjaxQueue
 
-eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3.h=9(o){f g=o.5;o.5=9(){b(g)g.c(p,e);3.n(3.h,"d")};3([3.h]).q("d",9(){3.d(o)})};3.a=9(o){f 2=3.a.2,4=3.a.4,6=2.k;2[6]={7:o.7,8:o.8,5:o.5,j:r};4[6]={7:[],8:[],5:[]};o.7=9(){4[6].7=e};o.8=9(){4[6].8=e};o.5=9(){4[6].5=e;2[6].j=s;b(6==0||!2[6-1])t(f i=6;i<2.k&&2[i].j;i++){b(2[i].7)2[i].7.c(3,4[i].7);b(2[i].8)2[i].8.c(3,4[i].8);b(2[i].5)2[i].5.c(3,4[i].5);2[i]=l;4[i]=l}};m 3.d(o)};3.a.2=[];3.a.4=[];',30,30,'||fn|jQuery|data|complete|pos|error|success|function|ajaxSync|if|apply|ajax|arguments|var|_old|ajaxQueue||done|length|null|return|dequeue||this|queue|false|true|for'.split('|'),0,{}))
+ * Queued Ajax requests.
+ * A new Ajax request won't be started until the previous queued 
+ * request has finished.
+ */
+jQuery.ajaxQueue = function(o){
+	var _old = o.complete;
+	o.complete = function(){
+		if ( _old ) _old.apply( this, arguments );
+		jQuery.dequeue( jQuery.ajaxQueue, "ajax" );
+	};
+
+	jQuery([ jQuery.ajaxQueue ]).queue("ajax", function(){
+		jQuery.ajax( o );
+	});
+};
+
+/*
+ * Synced Ajax requests.
+ * The Ajax request will happen as soon as you call this method, but
+ * the callbacks (success/error/complete) won't fire until all previous
+ * synced requests have been completed.
+ */
+jQuery.ajaxSync = function(o){
+	var fn = jQuery.ajaxSync.fn, data = jQuery.ajaxSync.data, pos = fn.length;
+	
+	fn[ pos ] = {
+		error: o.error,
+		success: o.success,
+		complete: o.complete,
+		done: false
+	};
+
+	data[ pos ] = {
+		error: [],
+		success: [],
+		complete: []
+	};
+
+	o.error = function(){ data[ pos ].error = arguments; };
+	o.success = function(){ data[ pos ].success = arguments; };
+	o.complete = function(){
+		data[ pos ].complete = arguments;
+		fn[ pos ].done = true;
+
+		if ( pos == 0 || !fn[ pos-1 ] )
+			for ( var i = pos; i < fn.length && fn[i].done; i++ ) {
+				if ( fn[i].error ) fn[i].error.apply( jQuery, data[i].error );
+				if ( fn[i].success ) fn[i].success.apply( jQuery, data[i].success );
+				if ( fn[i].complete ) fn[i].complete.apply( jQuery, data[i].complete );
+
+				fn[i] = null;
+				data[i] = null;
+			}
+	};
+
+	return jQuery.ajax(o);
+};
+
+jQuery.ajaxSync.fn = [];
+jQuery.ajaxSync.data = [];
+

@@ -1,3 +1,208 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
-
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$.2u({2t:"2B.2y",2j:"2k"});$().2m(2(){14();Y();$(\'#T\').2Z(2(H){1H=(H.1i)?H.1i:H.2O;e(1H==13){U()}});$(\'#2L\').J(2(){U()})});2 14(){d.t({u:{q:\'2V\'},Z:2(7){1z(7)}})}2 1z(7){3="#23";$(3).L(\'I\',0,2(){$(3).7(7)}).L(\'I\',1,2(){1K()})}2 1K(){$(\'.1J\').22(2(){3=$(E).V(\'1A\');9=$(E).1w();1d(3,9);6 8});$(\'.1J\').J(2(){3=$(E).V(\'1A\');1u(3);6 8})}2 1u(3){d.t({u:{q:\'21\',4:3},Z:2(7){1j(7)}})}2 1j(7){3="#1Z";$(3).L(\'I\',0,2(){$(3).7(7)}).L(\'I\',1)}2 1E(3){d.t({u:{q:\'20\',4:3}})}2 Y(4){$(\'#1G\'+4).J(2(){B(4);6 8});$(\'#1r\'+4).J(2(){1a(4);6 8})}2 1d(3,9){e(1e(3)!=o){6 8}1E(3);1t=9.1Y(\'(\');9=9.1s(0,1t);e(9.1I>18){X=9.1s(0,18)+\'..\'}1X{X=9}k=\'<c 4="s\'+3+\'" j="n" >\';k+=\'<c j="1T"><a 1U="#" j="1W" 4="1G\'+3+\'" 1S="\'+9+\'">\'+X;k+=\'</a></c>\';k+=\'<c j="29"><2a 2b="28/\'+27+\'/24.25"  j="26" 4="1r\'+3+\'" /></c>\';k+=\'</c>\';$(\'#2c\').1n(k);1h=\'<c 4="C\'+3+\'" j="Q"></c>\';$(\'#1b\').1n(1h);Y(3);B(3)}2 1e(3){e($(".n").1R()>=19){1y("1Qé1L a 1Pá1O 1Mé1N 1Vá30("+19+")");6 8}W=o;$(".n").2K(2(i){e(E.4==\'s\'+3){1y("A 1qá2M már 2N 2J!");W=8;6 8}});6 W}2 1a(4){$.2I(\'2E 2F 2G lé2H a 1qából?\',{2P:{2W:o,2X:8},2Y:2(v,m){e(v==8)6;$(\'#s\'+4).1k();$(\'#C\'+4).1k();1p()}})}2 B(4){$(\'.R\').M(\'R\').O(\'n\');$(\'#s\'+4).M(\'n\').O(\'R\');$(\'.D\').M(\'D\').O(\'Q\');$(\'#C\'+4).M(\'Q\').O(\'D\');f=4}2 1p(){z=$(\'.n:2d\').V(\'4\');2U{z=z.2Q(\'s\',\'\')}2R(2S){f=0;$(\'c.g\').2T();6 o}B(z)}2 1F(){e(f==0)6 o;d.t({u:{q:\'2D\',4:f},Z:2(7){$(\'#C\'+f).2C(7);1c()}})}2 U(){12=$(\'#T\').10();1x=$(\'#2l\').10();e(12.1I<1)6 8;d.t({u:{q:\'2n\',1w:12,4:f,2o:1x}});$(\'#T\').10(\'\')}p f=0;p 19=5;p 18=15;p 2f=1f.1g("1F()",2e);p 2g=1f.1g("14()",2h);2 1c(){$(\'.g\').2i();P=$(\'#1b\');11=$(\'.D\');17=d.N.1m(P.K(0));1l=d.N.2p(P.K(0));16=d.N.2q(P.K(0));S=d.N.1m(11.K(0));$(\'.g\').w(\'1o\',1l.y+\'F\');$(\'.g\').w(\'2z\',\'2A\');$(\'.g\').w(\'1D\',17.G+\'F\');1v=S.G-16.h;$(\'.1B\').w(\'1D\',16.h*17.G/S.G+\'F\');$(\'.g\').2x({2w:\'.1B\',2s:2(2r,1C,x,y){11.w(\'1o\',-1v*1C/2v+\'F\')}})}',62,187,'||function|mit|id||return|html|false|nev|||div|jQuery|if|aktivFul|slider1|||class|ful|||ful_div|true|var|modul||ful_|ajaxQueue|data||css|||utolso||fulAktival|chat_ablak_|chat_ablak_aktiv|this|px|hb|event|slow|click|get|fadeTo|removeClass|iUtil|addClass|ocontainer|chat_ablak|ful_div_aktiv|contentSize|chat_uzi|uziKuld|attr|mehet|rovidNev|setFulek|success|val|ocontent|uzi||getSzobaLista||containerInner|containerSize|maxFulNev|maxFul|fulBezar|chat_ablak_box|myscroll|addFul|checkFul|self|setInterval|ablak|keyCode|szobaInfoKirak|remove|containerPosition|getSize|append|top|utolsoFulAktival|szob|ful_close_|substring|pos|getSzobaInfo|spaceToScroll|text|color|alert|szobaListaKirak|alt|indicator|cordy|height|szobaBelepes|chatAblakFrissit|ful_link_|bill|length|szl_click|setSzobaLink|rted|enged|lyezett|lisan|maxim|El|size|title|ful_bal_div|href|tabsz|pic|else|indexOf|szoba_info_box|szobabelep|szobainfo|dblclick|szoba_lista_box|tabs_del|png|kat|SMINK|kinezet|ful_jobb_div|img|src|ful_box|last|2000|uzenetFrissites|szobaListaFrissites|60000|show|type|POST|colors|ready|addhsz|szin|getPosition|getClient|cordx|onSlide|url|ajaxSetup|100|accept|Slider|php|left|678px|chat_admin|prepend|gethsz|Biztos|ki|akarsz|pni|prompt|vagy|each|kuldes|ban|jelen|which|buttons|replace|catch|err|hide|try|szobalist|Igen|Nem|callback|keyup|mot'.split('|'),0,{}))
+$.ajaxSetup({
+	url: "chat_admin.php",
+	type: "POST"
+});
+$().ready(function() {
+	getSzobaLista();
+	setFulek();
+	$('#chat_uzi').keyup(function(event) {
+		bill = (event.keyCode) ? event.keyCode: event.which;
+		if (bill == 13) {
+			uziKuld()
+		}
+	});
+	$('#kuldes').click(function() {
+		uziKuld()
+	})
+});
+function getSzobaLista() {
+	jQuery.ajaxQueue({
+		data: {
+			modul: 'szobalist'
+		},
+		success: function(html) {
+			szobaListaKirak(html)
+		}
+	})
+}
+function szobaListaKirak(html) {
+	mit = "#szoba_lista_box";
+	$(mit).fadeTo('slow', 0,
+	function() {
+		$(mit).html(html)
+	}).fadeTo('slow', 1,
+	function() {
+		setSzobaLink()
+	})
+}
+function setSzobaLink() {
+	$('.szl_click').dblclick(function() {
+		mit = $(this).attr('alt');
+		nev = $(this).text();
+		addFul(mit, nev);
+		return false
+	});
+	$('.szl_click').click(function() {
+		mit = $(this).attr('alt');
+		getSzobaInfo(mit);
+		return false
+	})
+}
+function getSzobaInfo(mit) {
+	jQuery.ajaxQueue({
+		data: {
+			modul: 'szobainfo',
+			id: mit
+		},
+		success: function(html) {
+			szobaInfoKirak(html)
+		}
+	})
+}
+function szobaInfoKirak(html) {
+	mit = "#szoba_info_box";
+	$(mit).fadeTo('slow', 0,
+	function() {
+		$(mit).html(html)
+	}).fadeTo('slow', 1)
+}
+function szobaBelepes(mit) {
+	jQuery.ajaxQueue({
+		data: {
+			modul: 'szobabelep',
+			id: mit
+		}
+	})
+}
+function setFulek(id) {
+	$('#ful_link_' + id).click(function() {
+		fulAktival(id);
+		return false
+	});
+	$('#ful_close_' + id).click(function() {
+		fulBezar(id);
+		return false
+	})
+}
+function addFul(mit, nev) {
+	if (checkFul(mit) != true) {
+		return false
+	}
+	szobaBelepes(mit);
+	pos = nev.indexOf('(');
+	nev = nev.substring(0, pos);
+	if (nev.length > maxFulNev) {
+		rovidNev = nev.substring(0, maxFulNev) + '..'
+	} else {
+		rovidNev = nev
+	}
+	ful = '<div id="ful_' + mit + '" class="ful_div" >';
+	ful += '<div class="ful_bal_div"><a href="#" class="pic" id="ful_link_' + mit + '" title="' + nev + '">' + rovidNev;
+	ful += '</a></div>';
+	ful += '<div class="ful_jobb_div"><img src="kinezet/' + SMINK + '/tabs_del.png"  class="kat" id="ful_close_' + mit + '" /></div>';
+	ful += '</div>';
+	$('#ful_box').append(ful);
+	ablak = '<div id="chat_ablak_' + mit + '" class="chat_ablak"></div>';
+	$('#chat_ablak_box').append(ablak);
+	setFulek(mit);
+	fulAktival(mit)
+}
+function checkFul(mit) {
+	if ($(".ful_div").size() >= maxFul) {
+		alert("Elérted a maximálisan engedélyezett tabszámot(" + maxFul + ")");
+		return false
+	}
+	mehet = true;
+	$(".ful_div").each(function(i) {
+		if (this.id == 'ful_' + mit) {
+			alert("A szobában már jelen vagy!");
+			mehet = false;
+			return false
+		}
+	});
+	return mehet
+}
+function fulBezar(id) {
+	$.prompt('Biztos ki akarsz lépni a szobából?', {
+		buttons: {
+			Igen: true,
+			Nem: false
+		},
+		callback: function(v, m) {
+			if (v == false) return;
+			$('#ful_' + id).remove();
+			$('#chat_ablak_' + id).remove();
+			utolsoFulAktival()
+		}
+	})
+}
+function fulAktival(id) {
+	$('.ful_div_aktiv').removeClass('ful_div_aktiv').addClass('ful_div');
+	$('#ful_' + id).removeClass('ful_div').addClass('ful_div_aktiv');
+	$('.chat_ablak_aktiv').removeClass('chat_ablak_aktiv').addClass('chat_ablak');
+	$('#chat_ablak_' + id).removeClass('chat_ablak').addClass('chat_ablak_aktiv');
+	aktivFul = id
+}
+function utolsoFulAktival() {
+	utolso = $('.ful_div:last').attr('id');
+	try {
+		utolso = utolso.replace('ful_', '')
+	} catch(err) {
+		aktivFul = 0;
+		$('div.slider1').hide();
+		return true
+	}
+	fulAktival(utolso)
+}
+function chatAblakFrissit() {
+	if (aktivFul == 0) return true;
+	jQuery.ajaxQueue({
+		data: {
+			modul: 'gethsz',
+			id: aktivFul
+		},
+		success: function(html) {
+			$('#chat_ablak_' + aktivFul).prepend(html);
+			myscroll()
+		}
+	})
+}
+function uziKuld() {
+	uzi = $('#chat_uzi').val();
+	color = $('#colors').val();
+	if (uzi.length < 1) return false;
+	jQuery.ajaxQueue({
+		data: {
+			modul: 'addhsz',
+			text: uzi,
+			id: aktivFul,
+			szin: color
+		}
+	});
+	$('#chat_uzi').val('')
+}
+var aktivFul = 0;
+var maxFul = 5;
+var maxFulNev = 15;
+var uzenetFrissites = self.setInterval("chatAblakFrissit()", 2000);
+var szobaListaFrissites = self.setInterval("getSzobaLista()", 60000);
+function myscroll() {
+	$('.slider1').show();
+	ocontainer = $('#chat_ablak_box');
+	ocontent = $('.chat_ablak_aktiv');
+	containerSize = jQuery.iUtil.getSize(ocontainer.get(0));
+	containerPosition = jQuery.iUtil.getPosition(ocontainer.get(0));
+	containerInner = jQuery.iUtil.getClient(ocontainer.get(0));
+	contentSize = jQuery.iUtil.getSize(ocontent.get(0));
+	$('.slider1').css('top', containerPosition.y + 'px');
+	$('.slider1').css('left', '678px');
+	$('.slider1').css('height', containerSize.hb + 'px');
+	spaceToScroll = contentSize.hb - containerInner.h;
+	$('.indicator').css('height', containerInner.h * containerSize.hb / contentSize.hb + 'px');
+	$('.slider1').Slider({
+		accept: '.indicator',
+		onSlide: function(cordx, cordy, x, y) {
+			ocontent.css('top', -spaceToScroll * cordy / 100 + 'px')
+		}
+	})
+}

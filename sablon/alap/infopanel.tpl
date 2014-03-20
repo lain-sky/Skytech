@@ -23,10 +23,11 @@ var COOKIE_CONFIG = {expires: 365 };
         <div id="mytraffic">Letöltésed: <span class="highlight">{$ipanel.letolt|b_to_s}</span>, feltöltésed: <span class="highlight">{$ipanel.feltolt|b_to_s}</span>, arányod: <span class="{$ipanel.arany|aranyszin}">{$ipanel.arany_text}</span></div>
 
         <div id="others">
-                <a href="helpdesk.php" target="_self" title="Ha valami nem sikerül egyedül...">Helpdesk</a>&nbsp;-&nbsp;
-                <a href="top10.php" target="_self" title="No comment...">Top 10</a>&nbsp;-&nbsp;
-                <a href="dokumentacio.php?mit=link" target="_self" title="No comment...">Linkek</a>&nbsp;-&nbsp;
-                <a href="users.php" target="_self" title="No comment...">Felhasználók</a>&nbsp;&nbsp;
+                <a href="helpdesk.php" target="_self" title="Ha valami nem sikerül egyedül...">Helpdesk</a>&nbsp;-
+                <a href="top10.php" target="_self" title="No comment...">Top 10</a>&nbsp;-
+                <a href="dokumentacio.php?mit=link" target="_self" title="No comment...">Linkek</a>&nbsp;-
+                <a href="users.php" target="_self" title="No comment...">Felhasználók</a>&nbsp;-
+                <a href="hitnrun.php" target="_self" title="No comment...">Seedkötelezettség</a>&nbsp;&nbsp;
         </div>
         <div id="options">
                 <a class="pic" href="belep.php?logout=true" title="Kijelentkezem!"><img src="kinezet/{$ipanel.smink}/ip_logout.png" alt="" border="0" /></a>
@@ -42,7 +43,7 @@ var COOKIE_CONFIG = {expires: 365 };
                         {$ipanel.konyvjelzok}
         </div>
         <div id="ponts" >
-                <a href="pontok.php" title="Pontok megtekintése">{$ipanel.pontok} Sky-Pont</a>
+                <a href="pontok.php" title="Pontok megtekintése">{$ipanel.pont} Bónuszpont</a>
         </div>
         
 </div>

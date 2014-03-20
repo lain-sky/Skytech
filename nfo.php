@@ -1,7 +1,7 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
@@ -63,7 +63,7 @@ switch($g['modul']){
 	
 		$nfolines = explode ("\n", str_replace("\r", "", $nfo["nfo"]));
 				
-		$font = imageloadfont ("../rendszer/font/8x16.phpfont");
+		$font = imageloadfont ("rendszer/font/8x16.phpfont");
 		$width = 0;
 		$height = 0;
 		$fontwidth = imagefontwidth($font);

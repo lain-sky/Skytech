@@ -60,10 +60,10 @@ class Pont extends baseModel {
 	
 	function addTorrentFeltolt( $meret ){
 	
-		if( $meret > ( MB * 800) ){
+		if( $meret > (800 * 1024 * 1024) ){
 			$event=12;
 		}
-		elseif( $meret > ( MB * 200) ){
+		elseif( $meret > (200 * 1024 * 1024) ){
 			$event=11;
 		}
 		else{

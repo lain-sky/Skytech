@@ -2,7 +2,6 @@
 {* a fejlec csatolasa *}
 
 
-
 {* infopanel csatolása *}
 {include file='infopanel.tpl'}
 

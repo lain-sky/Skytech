@@ -44,9 +44,19 @@
 	<td class="t_meret">
 		{$t.meret|b_to_s}
 	</td>
-	<td class="t_sele">
+	<td class="t_down">
 		<a href="peerlista.php?id={$t.tid}" title="Peer lista megtekintése">
-			<span class="peers1">D{$t.letoltve}:S{$t.seed}/L{$t.leech}</span>
+			<span class="peers1">{$t.letoltve}</span>
+		</a>
+	</td>
+	<td class="t_down">
+		<a href="peerlista.php?id={$t.tid}" title="Peer lista megtekintése">
+			<span class="peers1">{$t.seed}</span>
+		</a>
+	</td>
+	<td class="t_down">
+		<a href="peerlista.php?id={$t.tid}" title="Peer lista megtekintése">
+			<span class="peers1">{$t.leech}</span>
 		</a>
 	</td>
 	<td class="t_upby">
@@ -56,13 +66,13 @@
 	</td>
 </tr>
 <tr id="kicsi_{$t.tid}" style="display:none;">
-	<td colspan="6" >
+	<td colspan="8" >
 		<div class="t_info"  id="div_{$t.tid}" style="display:none;opacity:0;">
 			{if $admin_panel==true}
 			<div class="textlayer">
 				<img src="kinezet/{$ipanel.smink}/t_edit.png" alt="" class="inline" border="0">&nbsp;<a  href="letolt_admin.php?modosit={$t.tid}">Szerkesztés</a>&nbsp;&nbsp;
-				<img src="kinezet/{$ipanel.smink}/t_delete.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}"  class="torrent_del">Törlés</a>&nbsp;&nbsp;
-				<img src="kinezet/{$ipanel.smink}/t_hide.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}" class="torrent_hidden" alt="{$t.hidden}">Torrent {if $t.hidden=='yes'}megjelenít{else}lerejt{/if}</a>&nbsp;&nbsp;
+				<img src="kinezet/{$ipanel.smink}/t_delete.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}"  class="torrent_del2">Törlés</a>&nbsp;&nbsp;
+				<img src="kinezet/{$ipanel.smink}/t_hide.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}" class="torrent_hidden" alt="{$t.hidden}">Torrent {if $t.hidden=='yes'}megjelenít{else}elrejt{/if}</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_ingyen.gif" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}" class="torrent_ingyen" alt="{$t.ingyen}">{if $t.ingyen=='yes'}Normal{else}Ingyen{/if} torrent</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_lock.png" alt="" class="inline" border="0">&nbsp;<a href="{$t.tid}"  {if $t.hsz_lezarva=='no'}class="hozzaszolas_letiltas">Hozzászólások letiltása{else}class="hozzaszolas_enged">Hozzászólások engedélyezése{/if}</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_check.png" alt="" class="inline" border="0">&nbsp;{if empty($t.adminname)}<a  href="{$t.tid}"  class="torrent_val" >Hitelesit</a>{else}Hitelesítette:{$t.adminname}{/if}&nbsp;&nbsp;
@@ -73,6 +83,7 @@
 			</div>
 			{/if}
 			<div class="textlayer">
+				<img src="kinezet/{$ipanel.smink}/torrent_download.png" alt="" class="inline" border="0"/>&nbsp;<a href="letoltes.php?id={$t.tid}">Letöltés</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_nfo.png" alt="" class="inline" border="0">&nbsp;{if $t.nfo_name=='yes'}<a  href="{$t.tid}"   class="nfo_view" >NFO</a>{else}NFO nem elérhetõ{/if}&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_details.png" alt="" class="inline" border="0">&nbsp;<a  href="adatlap.php?id={$t.tid}">Adatlap</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_comments.png" alt="" class="inline" border="0">&nbsp;<a  href="adatlap.php?id={$t.tid}">Hozzászólások ({$t.comment})</a>&nbsp;&nbsp;

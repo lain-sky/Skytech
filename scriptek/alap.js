@@ -214,14 +214,6 @@ $('#avatar_regi').click(function(){
 	return false;
 });
 
-$().ready(function(){
-	cim=$('#szicsu').attr('href');
-	cim=cim.replace('_cimecske_','mailto:');
-	cim=cim.replace('_kukacka_','@');
-	cim=cim.replace('_pontocska_','.');
-	$('#szicsu').attr('href',cim);
-});
-
 // a profil beállításnál az avatar elölnézet.
 $('#avatarelol').click(function(){	
 	if($('#avatar_regi').attr('href')=='#'){

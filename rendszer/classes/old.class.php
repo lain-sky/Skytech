@@ -56,7 +56,8 @@ class old{
 		$ipanel['konyvjelzok']=KonyvJelzo::getKonyvLista();
 		
 		$ipanel['display']= ( $_COOKIE[ constant('INFOPANEL_COOKIE')  ] == 'none' )? 'none' : 'block';
-		
+		$GLOBALS['USER']['pont'] = $GLOBALS['USER']['pontok'];
+		$ipanel['pont'] = intval($GLOBALS['USER']['pont']);
 		$hol=explode('/',$_SERVER['SCRIPT_NAME']);
 		$hol=end($hol);
 

@@ -22,6 +22,8 @@ class smarty_alap extends Smarty{
 		$this->register_modifier('section_open','section_open');
 		$this->register_modifier('b_to_s','bytes_to_string');
 		$this->register_modifier('t_to_s','time_to_string');
+		$this->register_modifier('d_to_s','date_to_string');
+		$this->register_modifier('t_to_i','ido');
 		$this->register_modifier('aranyszin','aranyszin');
 		$this->register_modifier('hiba_uzi','hiba_uzi');
 		$this->register_modifier('nyugta','nyugta');

@@ -1,4 +1,114 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
-
-
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$("#W").v(m);$("#1p").v(m);$("#q").1f(m);$().1w(m);$(\'#1s\').v(L);k L(){g=n;$(\':1e, :12\').V(k(){d(g){O=l.1o;J=O.1l(\'1j\',\'h\');d($(\'#\'+J).2(\'c\')==\'h\'){d($(l).j().B<4){l.y();g=i;o(\'U 1u 1tõt 1r N tö1q, 1n 4 1m!\')}}}});d(g){d(s(\'K\',$(\'#1k\').j())==i){g=i;o(\'A K fáS H Gõ!!\')}}d(g){d($(\'#F\').j()){d(s(\'P\',$(\'#F\').j())==i){g=i;o(\'1i P fáS H Gõ!!\')}}}d(g){$(\'.1h\').V(k(){d(g){d($(l).2(\'D\')!=n){l.y();g=i;o(\'U 1gé1d 1c N 1b!!\')}}})}d(g){1a.Z.Y()}}k s(a,b){p=b.1v(\'.\');d(p[p.B-1]==a){C n}T C i}k m(){d($(\'#W\').2(\'D\')==n){$(\'#z\').2(\'c\',\'h\');$(\'#x\').2(\'c\',\'e\');$(\'#I\').2(\'c\',\'e\');$(\'#E\').2(\'c\',\'e\');$(\'#w\').2(\'c\',\'e\');$(\'#u\').2(\'c\',\'e\');$(\'#r\').2(\'c\',\'e\')}T{$(\'#z\').2(\'c\',\'e\');$(\'#I\').2(\'c\',\'h\');$(\'#E\').2(\'c\',\'h\');M($(\'#q\').j()){0\'3\':0\'4\':0\'5\':0\'6\':0\'7\':0\'9\':0\'10\':0\'11\':0\'13\':0\'9\':0\'R\':0\'14\':0\'15\':0\'16\':$(\'#x\').2(\'c\',\'h\');Q;X:$(\'#x\').2(\'c\',\'e\')}M($(\'#q\').j()){0\'3\':0\'4\':0\'5\':0\'6\':0\'7\':0\'8\':0\'10\':0\'11\':0\'13\':0\'17\':0\'18\':0\'19\':0\'9\':0\'R\':$(\'#w\').2(\'c\',\'h\');$(\'#u\').2(\'c\',\'h\');$(\'#r\').2(\'c\',\'h\');Q;X:$(\'#w\').2(\'c\',\'e\');$(\'#u\').2(\'c\',\'e\');$(\'#r\').2(\'c\',\'e\')}}}',62,95,'case||attr||||||||||class|if|notreq||mehet|req|false|val|function|this|csillagoz|true|alert|tomb|tcategory|req7|fileType||req6|click|req5|req2|focus|req1||length|return|checked|req4|mezo1|megfelel|nem|req3|sId|torrent|ellenor|switch|kell|eId|nfo|break|24|jl|else|Minden|each|tsceneyes|default|submit|uploadform|||file||||||||document|fogadni|el|telt|text|change|felt|required|Az|mezo|mezo12|replace|karakterrel|minimum|id|tsceneno|lteni|ki|formkuld|mez|megcsillagozott|split|ready'.split('|'),0,{}))
+$("#tsceneyes").click(csillagoz);
+$("#tsceneno").click(csillagoz);
+$("#tcategory").change(csillagoz);
+$().ready(csillagoz);
+$('#formkuld').click(ellenor);
+function ellenor() {
+	mehet = true;
+	$(':text, :file').each(function() {
+		if (mehet) {
+			eId = this.id;
+			sId = eId.replace('mezo', 'req');
+			if ($('#' + sId).attr('class') == 'req') {
+				if ($(this).val().length < 4) {
+					this.focus();
+					mehet = false;
+					alert('Minden megcsillagozott mezõt ki kell tölteni, minimum 4 karakterrel!')
+				}
+			}
+		}
+	});
+	if (mehet) {
+		if (fileType('torrent', $('#mezo12').val()) == false) {
+			mehet = false;
+			alert('A torrent fájl nem megfelelõ!!')
+		}
+	}
+	if (mehet) {
+		if ($('#mezo1').val()) {
+			if (fileType('nfo', $('#mezo1').val()) == false) {
+				mehet = false;
+				alert('Az nfo fájl nem megfelelõ!!')
+			}
+		}
+	}
+	if (mehet) {
+		$('.required').each(function() {
+			if (mehet) {
+				if ($(this).attr('checked') != true) {
+					this.focus();
+					mehet = false;
+					alert('Minden feltételt el kell fogadni!!')
+				}
+			}
+		})
+	}
+	if (mehet) {
+		document.uploadform.submit()
+	}
+}
+function fileType(a, b) {
+	tomb = b.split('.');
+	if (tomb[tomb.length - 1] == a) {
+		return true
+	} else return false
+}
+function csillagoz() {
+	if ($('#tsceneyes').attr('checked') == true) {
+		$('#req1').attr('class', 'req');
+		$('#req2').attr('class', 'notreq');
+		$('#req3').attr('class', 'notreq');
+		$('#req4').attr('class', 'notreq');
+		$('#req5').attr('class', 'notreq');
+		$('#req6').attr('class', 'notreq');
+		$('#req7').attr('class', 'notreq')
+	} else {
+		$('#req1').attr('class', 'notreq');
+		$('#req3').attr('class', 'req');
+		$('#req4').attr('class', 'req');
+		switch ($('#tcategory').val()) {
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '9':
+		case '10':
+		case '11':
+		case '13':
+		case '9':
+		case '24':
+		case '14':
+		case '15':
+		case '16':
+			$('#req2').attr('class', 'req');
+			break;
+		default:
+			$('#req2').attr('class', 'notreq')
+		}
+		switch ($('#tcategory').val()) {
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '10':
+		case '11':
+		case '13':
+		case '17':
+		case '18':
+		case '19':
+		case '9':
+		case '24':
+			$('#req5').attr('class', 'req');
+			$('#req6').attr('class', 'req');
+			$('#req7').attr('class', 'req');
+			break;
+		default:
+			$('#req5').attr('class', 'notreq');
+			$('#req6').attr('class', 'notreq');
+			$('#req7').attr('class', 'notreq')
+		}
+	}
+}

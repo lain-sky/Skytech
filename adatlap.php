@@ -1,10 +1,9 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
-$belep=new belep(); // user belépés chek
-$old=new old(); //oldalelemek betöltése
-
+require_once('rendszer/mag.php');
+$belep=new belep();
+$old=new old();
 
 
 //az idezethez
@@ -14,21 +13,18 @@ if(!empty($p['idezet']) && is_numeric($p['idezet'])){
 	exit;
 }
 
-if(!is_numeric($g['id']) || empty($g['id'])){
+if(!is_numeric($g['id']) || empty($g['id'])) {
 	$OLDAL[]=hiba_uzi('A keresett torrent nem található');
-}
-else{
+} else {
 	$torrent=new Torrent();
-	if($torrent->checkTorrentById($g['id'])===false){
+	if($torrent->checkTorrentById($g['id']) === false) {
 		$OLDAL[]=hiba_uzi('A keresett torrent nem található');
-	}
-	else{
-		$oldal_cime=$_SERVER["SCRIPT_NAME"]."?id=".$g['id'];
+	} else {
+		$oldal_cime=$_SERVER["SCRIPT_NAME"] . "?id=" . $g['id'];
 		$smarty->assign('oldal_cime',$oldal_cime);
-		
 
 		//jelentés megjenenítése
-		if(!empty($_SESSION['jelentes'])){
+		if(!empty($_SESSION['jelentes'])) {
 			$OLDAL[]=$_SESSION['jelentes'];
 			unset($_SESSION['jelentes']);
 		}
@@ -44,8 +40,10 @@ else{
 		//nyitottság  check
 		$uj_hsz=($ttomb[0]['hsz_lezarva']=='no')? true:false;		
 		db::futat("select uid as id from torrent_hsz where tid='%d' order by thid desc",$g['id']);
-		if($USER['uid']==db::sor()) $uj_hsz=false;	
-		if($USER['rang'] < JOG_TORRENT_HOZZASZOLAS ) $uj_hsz=false;	
+		if($USER['uid']==db::sor())
+			$uj_hsz=false;	
+		if($USER['rang'] < JOG_TORRENT_HOZZASZOLAS )
+			$uj_hsz=false;	
 		$smarty->assign('uj_hsz',$uj_hsz);
 
 		// hsz kilista
@@ -53,7 +51,7 @@ else{
 		db::futat($sql,$g['id']);
 
 		$hsz=array();
-		foreach(db::tomb() as $k=>$v){
+		foreach(db::tomb() as $k=>$v) {
 
 			$uinfo=User::load( $v['uid'] );
 			$hsz[$k]=$uinfo;			
@@ -69,7 +67,7 @@ else{
 		$smarty->assign('hsz',$hsz);
 		
 		//jogosultság beallitas
-		if($USER['rang'] >= TORRENET_ADMIN_HSZ_MIN_RANG){
+		if($USER['rang'] >= TORRENET_ADMIN_HSZ_MIN_RANG) {
 			$smarty->assign('admin_link','true');
 		}
 

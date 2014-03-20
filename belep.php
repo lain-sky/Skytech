@@ -1,7 +1,7 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 
 
 //a hibaüzidekodolása és beállítása a megjelenítéshez
@@ -75,11 +75,17 @@ elseif( !empty($_POST['emailcim']) ){
 			
 			//indul a mail
 			require_once( CLASS_DIR . 'mailer.class.php');
-			$mail=new Mailer();
+			/*$mail=new Mailer();
 			$mail->address = $loadUser['email'];
 			$mail->body = elfelejtet_jelszo_mail(array('name'=>$loadUser['name'],'ellenor'=>$ellenor,'jelszo'=>$vadat['password']));
-			$mail->subject = OLDAL_NEVE . " - elfelejtett jelszó";
-			
+			$mail->subject = OLDAL_NEVE . " - elfelejtett jelszó";*/
+
+if (sendEmail($loadUser['email'], $loadUser['email'], OLDAL_NEVE." - elfelejtett jelszó", elfelejtet_jelszo_mail(array('name'=>$loadUser['name'],'ellenor'=>$ellenor,'jelszo'=>$vadat['password']))) )
+	$_SESSION['uzenet']=nyugta('A levelet kiküldtük! Amennyiben nem kapnád meg kérlek jelezd a staff@sky-tech.hu címen');
+else
+	$_SESSION['uzenet']=hiba_uzi('A levélkiküldés sikertelen, próbáld meg újra! Amennyiben nem kapnád meg kérlek jelezd a staff@sky-tech.hu címen');
+//			$_SESSION['uzenet']=elfelejtet_jelszo_mail(array('name'=>$loadUser['name'],'ellenor'=>$ellenor,'jelszo'=>$vadat['password']));
+/*
 			if( $mail->send() ==true ){
 				$_SESSION['uzenet']=nyugta('A levelet kiküldtük! Amennyiben nem kapnád meg kérlek jelezd a staff@sky-tech.hu címen');
 			
@@ -87,7 +93,7 @@ elseif( !empty($_POST['emailcim']) ){
 			else{
 				$_SESSION['uzenet']=hiba_uzi('A levélkiküldés sikertelen, próbáld meg újra! Amennyiben nem kapnád meg kérlek jelezd a staff@sky-tech.hu címen');
 			}
-			
+*/			
 			/*
 			$m_subject = Oldal_neve." - elfelejtett jelszó";
 			$m_headers  = "From: ".Oldal_vakmail."\r\nContent-type: text/html\r\n";

@@ -1,3 +1,161 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
+var buttonstates = new Array();
+function gettag(tag, which) {
+	switch(tag) {
+		case 'size':
+			x = document.getElementById('sizes');
+			o = "[size="+x.options[x.selectedIndex].value+"]";
+			c = "[/size]";
+			break;
+		case 'color':
+			x = document.getElementById('colors');
+			o = "[color="+x.options[x.selectedIndex].value+"]";
+			c = "[/color]";
+			break;
+		case 'bold':
+			o = "[b]";
+			c = "[/b]";
+			break;
+		case 'italic':
+			o = "[i]";
+			c = "[/i]";
+			break;
+		case 'underline':
+			o = "[u]";
+			c = "[/u]";
+			break;
+		case 'overline':
+			o = "[o]";
+			c = "[/o]";
+			break;
+		case 'linetrough':
+			o = "[x]";
+			c = "[/x]";
+			break;
+		case 'alignleft':
+			o = "[align=left]";
+			c = "[/align]";
+			break;
+		case 'aligncenter':
+			o = "[align=center]";
+			c = "[/align]";
+			break;
+		case 'alignright':
+			o = "[align=right]";
+			c = "[/align]";
+			break;
+		case 'alignjustify':
+			o = "[align=justify]";
+			c = "[/align]";
+			break;
+		case 'quote':
+			o = "[quote]";
+			c = "[/quote]";
+			break;
+		case 'url':
+			o = "[url]";
+			c = "[/url]";
+			break;
+		case 'mail':
+			o = "[email]";
+			c = "[/email]";
+			break;
+		case 'google':
+			o = "[google]";
+			c = "[/google]";
+			break;
+		case 'picture':
+			o = "[img]";
+			c = "[/img]";
+			break;
+		case 'flash':
+			o = "[swf=400x300]";
+			c = "[/swf]";
+			break;
+		case 'media':
+			o = "[wmp=400x300]";
+			c = "[/wmp]";
+			break;
+	}
+	if(which == 'o') return o;
+	if(which == 'c') return c;
+}
 
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('j m=1h 1g();h e(4,t){K(4){2\'A\':x=6.9(\'1f\');o="[A="+x.H[x.D].5+"]";c="[/A]";3;2\'v\':x=6.9(\'1j\');o="[v="+x.H[x.D].5+"]";c="[/v]";3;2\'1m\':o="[b]";c="[/b]";3;2\'1l\':o="[i]";c="[/i]";3;2\'1e\':o="[u]";c="[/u]";3;2\'1n\':o="[o]";c="[/o]";3;2\'1c\':o="[x]";c="[/x]";3;2\'19\':o="[a=18]";c="[/a]";3;2\'1d\':o="[a=1a]";c="[/a]";3;2\'1b\':o="[a=1o]";c="[/a]";3;2\'1k\':o="[a=1x]";c="[/a]";3;2\'n\':o="[n]";c="[/n]";3;2\'p\':o="[p]";c="[/p]";3;2\'O\':o="[I]";c="[/I]";3;2\'q\':o="[q]";c="[/q]";3;2\'R\':o="[N]";c="[/N]";3;2\'Q\':o="[J=L]";c="[/J]";3;2\'S\':o="[M=L]";c="[/M]";3}f(t==\'o\')s o;f(t==\'c\')s c}h C(4){8=4;K(4){2\'n\':8="g";3;2\'p\':8="g";3;2\'O\':8="g";3;2\'q\':8="g";3;2\'R\':8="g";3;2\'Q\':8="g";3;2\'S\':8="g";3}s 8}h w(4){8=C(4);f(m[4]!=1){m[4]=1;o=e(4,\'o\');6.9(d).5=6.9(d).5+o;6.9(4).G="E/"+F+"/T"+8+"1E.P"}l{m[4]=0;c=e(4,\'c\');6.9(d).5=6.9(d).5+c;6.9(4).G="E/"+F+"/T"+8+".P"}}h 1B(15,4){o=e(4,\'o\');c=e(4,\'c\');17=1i(15,"");6.9(d).5=6.9(d).5+o+17+c}h 16(){12=\'16.1z?14=\'+14+\'&k=\'+k;V=W.1C(12,\'1u\',\'1v=1w,1t=1s,1p=1q,1r=1y\');f(W.r)V.r()}h 1D(4){7=6.9(d);o=e(4,\'o\');c=e(4,\'c\');f(!7.1A){j y=6.U.X().k;f(y.11<=0)w(4);l 6.U.X().k=o+y+c}l{j 10=7.5.z(0,7.13);j B=o+7.5.z(7.13,7.Y)+c;j Z=7.5.z(7.Y,7.5.11);f(B==o+c)w(4);l 7.5=10+B+Z}7.r()}',62,103,'||case|break|tag|value|document|textarea|pic|getElementById|align|||textarea_id|gettag|if|manual|function||var|text|else|buttonstates|quote||url|google|focus|return|which||color|addbbt||selected|substring|size|codetext|getpic|selectedIndex|kinezet|theme|src|options|email|swf|switch|400x300|wmp|img|mail|png|flash|picture|media|bbtoolbar_|selection|newwin|window|createRange|selectionEnd|posttext|pretext|length|link|selectionStart|form|prompttext|smileyselector|input|left|alignleft|center|alignright|linetrough|aligncenter|underline|sizes|Array|new|prompt|colors|alignjustify|italic|bold|overline|right|resizable|no|scrollbars|550|width|moresmile|height|500|justify|yes|php|setSelectionRange|addbbw|open|addbbm|_active'.split('|'),0,{}))
+function getpic(tag) {
+	pic = tag;
+	switch(tag) {
+		case 'quote':
+			pic = "manual";
+			break;
+		case 'url':
+			pic = "manual";
+			break;
+		case 'mail':
+			pic = "manual";
+			break;
+		case 'google':
+			pic = "manual";
+			break;
+		case 'picture':
+			pic = "manual";
+			break;
+		case 'flash':
+			pic = "manual";
+			break;
+		case 'media':
+			pic = "manual";
+			break;
+	}
+	return pic;
+}
+
+function addbbt(tag) {
+	pic = getpic(tag);
+	if(buttonstates[tag] != 1) {
+		buttonstates[tag] = 1;
+		o = gettag(tag, 'o');
+		document.getElementById(textarea_id).value = document.getElementById(textarea_id).value+o;
+		document.getElementById(tag).src="kinezet/"+theme+"/bbtoolbar_"+pic+"_active.png";
+	}
+	else {
+		buttonstates[tag] = 0;
+		c = gettag(tag, 'c');
+		document.getElementById(textarea_id).value = document.getElementById(textarea_id).value+c;
+		document.getElementById(tag).src="kinezet/"+theme+"/bbtoolbar_"+pic+".png";
+	}
+}
+
+function addbbw(prompttext, tag) {
+	o = gettag(tag, 'o');
+	c = gettag(tag, 'c');
+	input = prompt(prompttext, "");
+	document.getElementById(textarea_id).value = document.getElementById(textarea_id).value+o+input+c;
+}
+
+function smileyselector() {
+	link = 'smileyselector.php?form='+form+'&text='+text;
+	newwin = window.open(link,'moresmile','height=500,width=550,resizable=no,scrollbars=yes');
+	if(window.focus) newwin.focus();
+}
+
+function addbbm(tag) {
+	textarea = document.getElementById(textarea_id);
+	o = gettag(tag, 'o');
+	c = gettag(tag, 'c');
+	if(!textarea.setSelectionRange) {
+		var selected = document.selection.createRange().text;
+		if(selected.length <= 0)
+			addbbt(tag);
+		else
+			document.selection.createRange().text = o+selected+c;
+	}
+	else {
+		var pretext = textarea.value.substring(0, textarea.selectionStart);
+		var codetext = o+textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)+c;
+		var posttext = textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+		if(codetext == o+c)
+			addbbt(tag);
+		else
+			textarea.value = pretext + codetext + posttext;
+	}
+	textarea.focus();
+}

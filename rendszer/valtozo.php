@@ -20,7 +20,7 @@ define('SMARTY_DEBUG',false); //smarty debug false/true
 
 
 
-define('Oldal_verzio', '1.2' ,true);
+define('Oldal_verzio', '1.3' ,true);
 define('Oldal_fejlec','..::'.OLDAL_NEVE.'-'.OLDAL_JELMONDAT.'::..');
 define('OLDAL_COPY', 'Copyright &copy; '.date('Y').' '.OLDAL_NEVE,true);
 define('Oldal_nyelve','hu');
@@ -363,6 +363,11 @@ $MENU_bal=array(
 
 
 $MENU_job=array(
+        array(
+                "olvas"=>"Admin",
+                "cim"=>"skytech.php",
+                "class"=>"staff"
+        ),
         array(
                 "olvas"=>"Kilép",
                 "cim"=>"belep.php?logout=true",

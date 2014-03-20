@@ -1,7 +1,7 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 require_once( CLASS_DIR . 'staff.class.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
@@ -12,7 +12,7 @@ $old=new old(); //oldalelemek betöltése
 		$headers  = "Content-type: text/plain\r\n";
 		$mail_szoveg ="Hi!\nA(z) ".$USER['name']." user (".$USER['uid'].") ezt az üzit küldte:\n\n";
 		$mail_szoveg.=$p['text'];
-		mail('szicsu.debug@gmail.com', $subject, $mail_szoveg, $headers);		
+		mail('dave666.david@gmail.com', $subject, $mail_szoveg, $headers);		
 		
 		if( $p['valasz']=='igen' ){
 			Staff::addValasz( $p['text'], $p['tema'], $p['parent'] );

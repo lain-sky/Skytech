@@ -1,7 +1,8 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
+require_once('rendszer/torrent.functions.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
@@ -21,12 +22,25 @@ ob_clean();
 	//die($torrent_letoltesi_nev);
 
 	$dict = bdec_file($torrent_file, (1024*1024));
-	unset($dict["value"]["announce-list"]);
+
 	$dict['value']['announce']['value'] = $torrent->getTrackerUrl();
+	$dict['value']['info']['value']['private']=bdec('i1e'); // add private tracker flag
 	$dict['value']['announce']['string'] = strlen($dict['value']['announce']['value']).":".$dict['value']['announce']['value'];
 	$dict['value']['announce']['strlen'] = strlen($dict['value']['announce']['string']);
+	unset($dict["value"]["announce-list"]);
+	unset($dict['value']['nodes']);
+	$dict=bdec(benc($dict));
 	$data=benc($dict);
+	list($ann, $info) = dict_check($dict, "announce(string):info"); 
+/*
+$dict['value']['announce']=bdec(benc_str($TBDEV['announce_urls'][0] )); // change announce url to local
 
+$dict['value']['info']['value']['private']=bdec('i1e'); // add private tracker flag
+
+$dict['value']['info']['value']['source']=bdec(benc_str( "{$TBDEV['baseurl']} {$TBDEV['site_name']}")); // add link for bitcomet users
+*/
+
+ 
 
 	header ("Expires: Tue, 1 Jan 1980 00:00:00 GMT");
 	header ("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");

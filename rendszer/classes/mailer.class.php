@@ -2,85 +2,41 @@
 if(!defined('SZINT1') || SZINT1!==666 ) die('Hozzáférés megtagadva'); //osztály biztonság
 
 require_once( MAILER_DIR . 'class.phpmailer.php');
-class Mailer{
 
+function sendEmail($Email, $Nick, $Targy, $Uzenet, $f_mail = 'blueedragonnteam@gmail.com', $f_name = 'BD-Team') {
+    $from_mail = 'blueedragonnteam@gmail.com';
+    $from_name = 'BD-Team';
 
-	private $charSet="iso-8859-2";
-	private $wordWrap = 50;
-	private $isHTML=true;
-	
-	protected $from;
-	protected $fromName;
-	protected $replyTo;
-	
-	public $address= false;
-	public $subject= false;
-	public $body=false;
- 	
-	
-	
-	
-	
-	function __construct(){
-		$this->from=OLDAL_VAKMAIL;
-		$this->fromName=OLDAL_NEVE;
-		$this->replyTo='info@sky-tech.hu';
-	}
-	
-	
-	
-	function send(){
-		$mail=new PHPMailer();
-		$mail->CharSet="iso-8859-2";	
-		$mail->WordWrap = 50; 
-		$mail->IsHTML(true);
-		
-		$mail->From=OLDAL_VAKMAIL;
-		$mail->FromName=OLDAL_NEVE;
-		$mail->AddReplyTo('info@sky-tech.hu');
-		$mail->Subject = $this->subject; 
-		$mail->AddAddress( $this->address );  
-		$mail->Body = $this->antiSpam( $this->body ) ;
-		return $mail->Send();
-	}
-	
-	
-	
-	function antiSpam( $str ){
-		
-		$mit=array('http://');
-		$mire=array('');
-		return str_replace($mit,$mire,$str);
-	}
-	
-	
-	
-	function sendTo(){	
-		
-		/*
-		$class_vars = get_object_vars( $this  );
+    $mail = new PHPMailer();
+    $mail->From = $from_mail;
+    $mail->FromName = $from_name;
+    $mail->IsSMTP(); 
+    $mail->IsHTML(true);
+    $mail->CharSet = 'iso-8859-2';
+    $mail->SetLanguage('hu', '/PHPMailer/language');
+    $mail->WordWrap = 50;
+//    $mail->SMTPDebug = 0; // Enables SMTP debug information [1 = errors and messages | 2 = messages only]
+//    $mail->Debugoutput = 'html';
 
-		foreach ($class_vars as $name => $value) {
-			$postData[$name]=$value;
-		}
-		*/
-		$postData['address']=$this->address;
-		$postData['subject']=$this->subject;
-		$postData['body']=$this->body;
-		
-		
-		$url = "http://private.sky-tech.hu/Y29ubmVjdA/cmVnaXN6dHLhY2nz.php";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POST, 1);
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-		$response = curl_exec($ch);
-		curl_close($ch);
-		return $response;
-	}
-	
+    $mail->SMTPAuth = true;
+    $mail->Username = $from_mail;
+    $mail->Password = 'Bdt34em1';
 
-}// end class
+    $mail->Sender = $from_mail;
+    $mail->AddReplyTo($f_mail, $f_name);
+    $mail->AddAddress($Email, $Nick);
+    $mail->Subject = $Targy;
+	$mail->Body = $Uzenet;
+
+    if($mail->Send()) {
+    	$mail->ClearAddresses();
+    	return true;
+    } else {
+    	return false;
+    }
+}
 ?>

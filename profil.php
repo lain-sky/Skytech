@@ -1,7 +1,7 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 
 
@@ -32,7 +32,7 @@ if(!empty($_POST)){
 		$avatar=(!empty($p['avatar']))? $p['avatar']:'avatar.png';		
 
 		//smink egyenlõre még nem aktuális
-		$smink=$p['smink'];
+		$smink='alap';//$p['smink'];
 
 		//kategoriak
 		if(!empty($p['kategoriak'])){
@@ -115,25 +115,11 @@ if(!empty($_POST)){
 					else{
 						//adatrogzítés ok és email indul :)
 						require_once( CLASS_DIR . 'mailer.class.php');
-						$mail=new Mailer();
-						$mail->address= $USER['email'];
-						$mail->body= uj_jelszo_mail(array('name'=>$USER['name'],'pass'=>$p['pw1'],'ellenor'=>$ellenor));
-						$mail->subject= OLDAL_NEVE." - jelszócsere megerõsítése";	
 						
-						if( $mail->send()==true){
+						if (sendEmail($USER['email'], $USER['email'], OLDAL_NEVE." - jelszócsere megerõsítése", uj_jelszo_mail(array('name'=>$USER['name'],'pass'=>$p['pw1'],'ellenor'=>$ellenor))) )
 							$OLDAL[]=nyugta("Címedre (<span class=\"highlight\">".$USER['email']."</span>) megerõsítõ e-mailt küldtünk. Jelszavad csak a megerõsítés után változik meg! Ha nem kapnád meg a levelet kérlek jelezd a staffnak!");
-						}
-						else{
+						else
 							$OLDAL[]=hiba-uzi("Levélkiküldési hiba! Próbáld meg újra, ha nem sikerülne kérlek jelezd a staffnak!");
-						}
-						
-						/*
-						$m_subject = Oldal_neve." - jelszócsere megerõsítése";
-						$m_headers  = "From: ".Oldal_vakmail."\r\nContent-type: text/html\r\n";
-						$mail_szoveg=uj_jelszo_mail(array('name'=>$USER['name'],'pass'=>$p['pw1'],'ellenor'=>$ellenor));
-						mail($USER['email'], $m_subject, $mail_szoveg, $m_headers);	
-						$OLDAL[]=nyugta("Címedre (<span class=\"highlight\">".$USER['email']."</span>) megerõsítõ e-mailt küldtünk. Jelszavad csak a megerõsítés után változik meg!");				
-						*/
 					}
 				}
 			}//jelszocsere end

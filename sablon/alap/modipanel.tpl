@@ -107,9 +107,10 @@
 		</form>		
 		{'Találatok szûkítése'|section_end}
 	{/if}
-	
+
 	{* $subtemplate *}
-	{include file= $subtemplate}
+	{include file= "../adminTemplate/$subtemplate.tpl"}
+	{*include file= "../adminTemplate/var_setting.tpl"*}
 	
 	
 </div>

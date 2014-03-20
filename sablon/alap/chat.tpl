@@ -45,7 +45,7 @@
 						<td>
 							<textarea id="chat_uzi" class="textarea" style="border:1px solid #726D5F;height:60px;width:330px;"></textarea>
 						</td>
-						<td>Üzenet szine:
+						<td>Üzenet színe:
 							<select size="1" name="color" id="colors">
 								<option  value="alap">Alapérték</option>
 								

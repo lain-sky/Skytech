@@ -1,7 +1,8 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
+require_once('rendszer/torrent.functions.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 $f=$_FILES;
@@ -166,7 +167,7 @@ if(!empty($p) && !empty($f)){
 			}
 			$type = "multi";
 		}
-		
+	
 		
 		$tempInfoHash=md5( pack("H*", sha1($info["string"])) );
 		if( Torrent::isUnique( $tempInfoHash ) != true ){
@@ -199,6 +200,11 @@ if(!empty($p) && !empty($f)){
 				}
 			}
 			logs::sysLog( 'torrent' , 'torrent feltöltés', 'tid='. $rogzitett  );
+			
+			//bónuszpontok jóváírása by Daveee10
+			$pontok=new Pont();
+			$pontok->addTorrentFeltolt($torrent->meret);
+
 			$OLDAL[]=nyugta("Feltöltés sikeres!");
 		}
 		else{

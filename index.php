@@ -1,9 +1,7 @@
 <?php
 ob_start();
-//die( 'karbantartás');
 define('SZINT',666);
-//echo __FILE__ . "<br />";
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 
 
 $belep=new belep(); // user belépés chek
@@ -22,14 +20,22 @@ if(SYSTEM_OFF===true){
 
 //hirek elõállítása
 
-db::futat("select hid as id,cim,text,datum,disp from hirek order by datum desc");
-$hirek=db::tomb();
-if($USER['rang']>10){
-	$smarty->assign('uj_link','<a href="hirek.php?mit=uj&vissza=index.php" >Új hír hozzáadása</a>');	
-}
-
-foreach($hirek as $key=>$val){
-	$hirek[$key]['text']=bb::bbdecode($val['text']);
+db::futat("select hid as id,cim,text,datum,disp from hirek order by datum desc");
+
+$hirek=db::tomb();
+
+if($USER['rang']>10){
+
+	$smarty->assign('uj_link','<a href="hirek.php?mit=uj&vissza=index.php" >Új hír hozzáadása</a>');	
+
+}
+
+
+
+foreach($hirek as $key=>$val){
+
+	$hirek[$key]['text']=bb::bbdecode($val['text']);
+
 }
 
 $smarty->assign('hirek', Cache::get( CACHE_HIREK ) );
@@ -40,7 +46,7 @@ $smarty->assign('hirek', Cache::get( CACHE_HIREK ) );
 /* Szavazás */
 /************/
 
-
+/*
 //Az aktuális szavazás kikeresées
 db::futat("select szid,cim,datum from szavazas order by szid desc limit 0,1");
 $tomb=db::tomb();
@@ -76,15 +82,20 @@ else{
 
 // szavazas adati
 $szavaz['cim']=$tomb[0]['cim'];
-$szavaz['datum']=$tomb[0]['datum'];
-if($USER['rang']>10){
-	$szavaz['link']='<a href="szavazas.php?mit=mod&id='.$tomb[0]['szid'].'&vissza=index.php">Szavazás szerkesztése</a> &bull; ';
-	$szavaz['link'].='<a href="szavazas.php?mit=del&id='.$tomb[0]['szid'].'&vissza=index.php" class="szavaztorol" alt="'.$tomb[0]['szid'].'">Szavazás törlése</a> &bull; ';
-	$szavaz['link'].='<a href="szavazas.php?mit=uj&vissza=index.php">Új szavazás</a>';
+$szavaz['datum']=$tomb[0]['datum'];
+
+if($USER['rang']>10){
+
+	$szavaz['link']='<a href="szavazas.php?mit=mod&id='.$tomb[0]['szid'].'&vissza=index.php">Szavazás szerkesztése</a> &bull; ';
+
+	$szavaz['link'].='<a href="szavazas.php?mit=del&id='.$tomb[0]['szid'].'&vissza=index.php" class="szavaztorol" alt="'.$tomb[0]['szid'].'">Szavazás törlése</a> &bull; ';
+
+	$szavaz['link'].='<a href="szavazas.php?mit=uj&vissza=index.php">Új szavazás</a>';
+
 }
 $smarty->assign('szavaz',$szavaz);
 
-
+*/
 
 
 
@@ -92,11 +103,12 @@ $smarty->assign('szavaz',$szavaz);
 /****************/
 /* Aktív userek */
 /****************/
+/*
 $tomb = Cache::get(CACHE_AKTIV_USER );
 $smarty->assign('user_list',$tomb);
 $smarty->assign('akt_user','Akik jelenleg az oldalt böngészik (Összesen '.count($tomb).' felhasználó)');
 //d(db::$parancs);
-
+*/
 
 /*************************/
 /* általámos statisztika */
@@ -107,8 +119,8 @@ $smarty->assign('akt_user','Akik jelenleg az oldalt böngészik (Összesen '.count(
 
 //szerver fut
 
-//db::futat("SHOW GLOBAL VARIABLES");
-/*
+db::futat("SHOW GLOBAL VARIABLES");
+
 db::futat("SHOW GLOBAL STATUS");
 $tomb=db::tomb();
 //d($tomb);
@@ -124,11 +136,10 @@ $smarty->assign('cpu_arany',round( ($cr*100),2 ));
 $rr=round( ( $cr/rand(3,9) ) ,2 ); 
 $smarty->assign('ram_width', round( ( LOAD_WIDTH* $rr ) ) );
 $smarty->assign('ram_arany',round( ($rr*100),2 ));
-*/
+
 
 
 $smarty->assign('stat', Cache::get( CACHE_INDEX_STATS ) );
-
 
 
 $smarty->assign('OLDAL',$OLDAL);

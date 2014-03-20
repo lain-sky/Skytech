@@ -82,7 +82,7 @@ class User{
 		$kesz['megjelen']=explode('|',$t['megjelen']);
 		$kesz['perold']=explode('|',$t['perold']);	
 		
-		$kesz['pontok']=$t['pontok'];	
+		$kesz['pontok']=0+$t['pontok'];	
 		
 		$kesz['gui']=$kesz['megjelen'][3];
 		

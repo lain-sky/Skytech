@@ -52,7 +52,7 @@
 				</td>
 			</tr>	
 			<tr>		
-				<td>Üzenet szine:
+				<td>Üzenet színe:
 					<select size="1" name="color" id="colors">
 						<option  value="alap">Alapérték</option>
 						

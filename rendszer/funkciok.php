@@ -134,7 +134,41 @@ function time_to_string($mikor) {
 	elseif ($stamp >= 86400) return (int)($stamp/86400)." napja";
 	elseif ($stamp >= 3600) return (int)($stamp/3600)." órája";
 	elseif ($stamp >= 60) return (int)($stamp/60)." perce";
-	else return "alig 1 perce";
+	else return "most";
+}
+
+//kiszámolja az eltelt idõt a dátumból és kiirja
+function date_to_string($mikor) {
+	$stamp = time()-strtotime($mikor);
+	if ($stamp >= 3600) return (int)($stamp/3600)." órája";
+	elseif ($stamp >= 60) return (int)($stamp/60)." perce";
+	else return "1 perce";
+}
+
+function ido($str) {
+    if ($str < 0)
+        $str = 0;
+    
+    $t = array();
+    foreach(array('60:mp', '60:p', '24:o', '0:n') as $x) {
+        $y = explode(':', $x);
+        if ($y[0] > 1) {
+            $v = $str % $y[0];
+            $str = floor($str / $y[0]);
+        }
+        else
+            $v = $str;
+        $t[$y[1]] = $v;
+    }
+
+    if($t['n'])
+        return sprintf('%d ó %d p', (($t['n']*24)+$t['o']), $t['p']);
+    elseif($t['o'])
+        return sprintf('%d ó %d p', $t['o'], $t['p']);
+    elseif($t['p'])
+        return sprintf('%d p', $t['p']);
+	else
+    	return '-';
 }
 
 // Arany szinezese

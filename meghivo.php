@@ -1,7 +1,7 @@
 <?php
 ob_start();
 define('SZINT',666);
-require_once('../rendszer/mag.php');
+require_once('rendszer/mag.php');
 $belep=new belep(); // user belépés chek
 $old=new old(); //oldalelemek betöltése
 
@@ -391,7 +391,6 @@ foreach(db::elso_sor() as $key=>$val){
 
 
 $smarty->assign('meghivotext',$segedlet);
-
 $smarty->assign('OLDAL',$OLDAL);
 
 $smarty->display('meghivo.tpl');

@@ -31,7 +31,7 @@
 			<td class="dlgcell"><p class="left">{$uinfo.vizit}</p></td>
 		</tr>
 		<tr>
-			<td class="dlgcell"><p class="right"><b>Hozzászólások száma:</b></p></td>
+			<td class="dlgcell"><p class="right"><b>Fórum hozzászólások:</b></p></td>
 			<td class="dlgcell"><p class="left">{$uinfo.hszszam}&nbsp;db</p></td>
 		</tr>
 			<tr>
