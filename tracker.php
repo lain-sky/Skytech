@@ -2,25 +2,23 @@
 define('SZINT1',666);
 define('MAIL_DEBUG',false);
 
-require_once('../rendszer/config.php');
-require_once('../rendszer/db_class.php');
-require_once('../rendszer/torrent.class.php');
-require_once('../rendszer/torrent.functions.php');
-require_once('../rendszer/logs.class.php');
-require_once('../rendszer/debug.class.php');
+require_once('rendszer/config.php');
+require_once('rendszer/classes/cache.class.php');
+require_once('rendszer/classes/db.class.php');
+require_once('rendszer/classes/torrent.class.php');
+require_once('rendszer/torrent.functions.php');
+require_once('rendszer/classes/logs.class.php');
+require_once('rendszer/classes/d.class.php');
 
-
-
-//$getCopy=$_GET;
-//unset($getCopy['peer_id'],$getCopy['info_hash']);
 $torrentLogHozAGet=var_export($_GET, true);
-//$torrentLogHozAGet=iconv("UTF-8", "ISO-8859-2//IGNORE",  $torrentLogHozAGet );
-//$torrentLogHozAGet='alma';
+
+foreach( Cache::get( CACHE_VALTOZOK )  as $key=>$val){
+	define(strtoupper($key),$val['value'],true);
+}
 
 if(TRACKER=='no'){
 	err(TRACKER_KIKAPCSOL_TEXT);
 }
-
 
 /*beallitasok */
 $announce_interval= (int)TRACKER_AUTO_REFRESH; //az idõ amilyen sûrûn visszanéz a kliens
@@ -30,22 +28,17 @@ $MEMBERSONLY="yes"; //valami az userekkel kapcsolatos
 $waitsystem=(ADAT_KORLATOZAS == "yes")? "yes":"no" ;
 $maxdlsystem =(SLOT_KORLATOZAS =="yes")? "yes":"no" ;
 $ip = getip();
-$dt=date("Y-m-d H:i:s",(time()-180));
 $updateset = array();
 
-$uagent = $_SERVER['HTTP_USER_AGENT'];
 $agent = $_SERVER["HTTP_USER_AGENT"];
 if(function_exists('getallheaders')){
 	$headers = getallheaders();
 }
 
-
-
 /*************/
 /* takaritas */
 /*************/
-//db::futat("delete from peers where (UNIX_TIMESTAMP(now())- UNIX_TIMESTAMP(last_action))>%d",($announce_interval+100));
-
+db::futat("delete from peers where (UNIX_TIMESTAMP(now())- UNIX_TIMESTAMP(last_action))>%d",($announce_interval+100));
 
 /****************/
 /* adat konvert */
@@ -69,7 +62,6 @@ foreach (array("passkey","info_hash","peer_id","port","downloaded","uploaded","l
 		foreach (array("info_hash","peer_id") as $x)
 			if (strlen(stripslashes($GLOBALS[$x])) != 20) err("Invalid $x (" . strlen($GLOBALS[$x]) . " - " . urlencode($GLOBALS[$x]) . ")");
 				if (strlen($passkey) != 32) err("Invalid passkey (" . strlen($passkey) . " - $passkey)");
-
 				
 foreach(array("num want", "numwant", "num_want") as $k){
 	if (isset($_GET[$k])){
@@ -81,7 +73,7 @@ if (!isset($event))	$event = "";
 $seeder = ($left == 0) ? "yes" : "no";
 
 /**********/
-/* Chechk */
+/* Check */
 /**********/
 
 //anti cheat
@@ -89,21 +81,8 @@ if (isset($headers["Cookie"]) || isset($headers["Accept-Language"]) || isset($he
 	err("Anti-Cheater= Ez nem szep dolog!");
 }
 
-
 //bongeszobol valo futathatosagi tiltas
-if (ereg("^Mozilla\\/", $agent) || ereg("^Opera\\/", $agent) || ereg("^Links ", $agent) || ereg("^Lynx\\/", $agent))
-	err("A torrent nem toltheto bongeszobol!");
-
-//tiltot kliensek
-
-db::futat("select kliens from tiltot_kliens");
-foreach(db::elso_sor() as $nea){
-	$n = $nea['kliens'];
-	$nr = preg_replace("/\//", "\/", $n);
-	$neadle = "/\b$nr\b/i";
-	if (preg_match($neadle, $uagent))
-	        err("A kliensed tito listan van,az oldalon megtalalod a tamogatott klienseket:".Oldal_cime);
-}
+if (ereg("^Mozilla\\/", $agent) || ereg("^Opera\\/", $agent) || ereg("^Links ", $agent) || ereg("^Lynx\\/", $agent)) err("A torrent nem toltheto bongeszobol!");
 if(ereg("^BitTorrent\\/S-", $agent)) err("Shadow's Experimental Client is Banned. Please use uTorrent.");
 if(ereg("^ABC\\/ABC", $agent)) err ("ABC is Banned. Please use uTorrent.");
 if(ereg("^Python-urllib\\/2.4", $agent)) err ("Banned Client. Please use uTorrent.");
@@ -128,20 +107,17 @@ if ($valid[0]['db'] != 1) err("Hibas passkey!Probald ujra letolteni a torrent fa
 /***************/
 
 // torrent létezik e?
-db::futat("select tid,kid,name,seeders+leechers as numpeers,UNIX_TIMESTAMP(datum) AS letrehozva,ingyen from torrent where (info_hash='%s' or info_hash='%s'  or info_hash='%s')",md5(stripslashes($info_hash)),md5(my_hash(stripslashes($info_hash))),md5($info_hash));
+db::futat("select tid,kid,name,seeders+leechers as numpeers,UNIX_TIMESTAMP(datum) AS letrehozva,ingyen,meret from torrent where (info_hash='%s' or info_hash='%s'  or info_hash='%s')",md5(stripslashes($info_hash)),md5(my_hash(stripslashes($info_hash))),md5($info_hash));
 
-if (db::$sorok<1){
-	d::addText('sql',db::$parancs);
-	d::addText('hash',$info_hash);
-	d::send(false); 
+if (db::$sorok<1)
 	err("A torrent nincs regisztralva a tracker-en!!");
-}
 
 //torrentadatainak betoltese
 	$torrent=db::tomb();
 	$torrentid = $torrent[0]["tid"];
 	$ingyen_torrent=$torrent[0]["ingyen"];
 	$torrentname = $torrent[0]["name"];
+	$torrentsize = $torrent[0]["meret"];
 	$torrentcategory = $torrent[0]["kid"];
 	$numpeers = $torrent[0]["numpeers"];
 	$torrentLetrehozva=$torrent[0]['letrehozva'];
@@ -152,13 +128,12 @@ if (db::$sorok<1){
 if ($numpeers > $rsize)	$limit = "ORDER BY RAND() LIMIT $rsize";
 
 //peers adatok lekérése
-//$pari="select ".$fields." from peers where tid='%d' and connectable = 'yes' ".$limit;
 $pari="select ".$fields." from peers where tid='%d'  ".$limit;
 db::futat($pari,$torrentid);
 $peerlistahoz=db::tomb();
 
 //peerlista oszeálítasa
-$resp = "d" . benc_str("interval") . "i" . $announce_interval . "e" . benc_str("peers") . "l";
+$resp = "d" . benc_str("interval") . "i" . $announce_interval . "e" . benc_str("private") . 'i1e' . benc_str("peers") . "l";
 unset($self);
 foreach($peerlistahoz as $row){
 	$row["peer_id"]=numericEncode($row["peer_id"]);
@@ -194,12 +169,11 @@ if (!isset($self)){
 //minimum vároakoztatás
 if( isset($self) && ($self['prevts'] > ($self['nowts'] - $announce_wait )) )
 	err('Minimum bejelentkezesi ido: ' . $announce_wait . ' seconds');
-
 //nincs meg bent az user a peer listaban azaz friss letöltõ
-if (!isset($self)){	
+if (!isset($self)){
 	db::futat("SELECT COUNT(*) as db FROM peers WHERE tid='%d' and passkey='%s'",$torrentid,$passkey);
 	$valid=db::tomb();	
-	
+
 	if ($valid[0]['db'] >= 1 && $seeder == 'no') err("Connection limit exceeded! You may only leech from one location at a time.");	
 	if ($valid[0]['db'] >= 3 && $seeder == 'yes') err("Connection limit exceeded!");
 
@@ -207,7 +181,7 @@ if (!isset($self)){
 	if ($MEMBERSONLY == "yes" && db::$sorok == 0){
 		err("A passkey hiba keresd fel az oldalt:".Oldal_cime);
 
-}
+	}
 
 	$az = db::elso_sor();
 	$userid = 0 + $az["uid"];
@@ -241,8 +215,8 @@ if (!isset($self)){
 		}
 	}
 }
-
 else{
+
 //az user ben tvan a peer tablaban
 	$upthis = max(0, $uploaded - $self["uploaded"]);
 	$downthis = max(0, $downloaded - $self["downloaded"]);
@@ -256,7 +230,10 @@ else{
 	}
 }
 
-
+$pari = "select status,feltoltve,letoltve,futasido,hatravan from hitnrun where tid=%d and uid=%d";
+if(!db::futat($pari,$torrentid,$userid))
+	err(db::hibasz());
+$hnrl=db::elso_sor();
 
 	$downloaded2=$downloaded - $self["downloaded"];
 	$uploaded2=$uploaded - $self["uploaded"];
@@ -277,43 +254,59 @@ else{
 
 //a toltogetes megallitasa
 if ($event == "stopped"){	
-	db::futat("DELETE FROM peers WHERE " . $selfwhere);	
+	db::futat("DELETE FROM peers WHERE " . $selfwhere);
+
+	//hitnrun táblába mentés
+	$hdown=$hnrl['letoltve']+$downloaded;
+	$hup=$hnrl['feltoltve']+$uploaded;
+	$actualseed=(time()-strtotime($prev_action));
+	$seedtime=$hnrl['futasido']+$actualseed;
+	$remain=(($hdown == 0 && $hnrl['status'] == "2") ? 0 : (($left == 0) ? hnr_calc(($hup/$hdown),$torrentsize,$seedtime) : 172800));
+	$pari = "UPDATE hitnrun SET frissitve='%s',status='%s',letoltve=letoltve+'%f',feltoltve=feltoltve+'%f',futasido=%d,hatravan=%d WHERE uid=%d AND tid=%d";
+	db::futat($pari,date('Y-m-d H:i:s'),"0",$downloaded,$uploaded,$seedtime,$remain,$userid,$torrentid);
 }
 else{
 	//toltoget vegzes
 	if ($event == "completed"){
-		db::futat("update torrent set letoltve=letoltve+1 where tid='%d' ",$torrentid);		
+		db::futat("update torrent set letoltve=letoltve+1 where tid='%d' ",$torrentid);	
+		
+		$pari = "UPDATE hitnrun SET frissitve='%s',status='%s',letoltve=letoltve+'%f',feltoltve='%f',futasido=%d,hatravan=%d WHERE uid=%d AND tid=%d";
+		db::futat($pari, date('Y-m-d H:i:s'),"2",$downloaded,0,0,172800,$userid,$torrentid);
 	}
 
-	
 	$sockres = @fsockopen($ip, $port, $errno, $errstr, 5);
 	if (!$sockres)
 		$connectable = "no";
 	else{
 		$connectable = "yes";
 		@fclose($sockres);
-	}
-	
-	d::addText('ip',$ip);
-	d::addText('port',$port);
-	d::addText('connect',$connectable);
-	
+	}	
 	
 	//azonositott user a peer alapján
 	if (isset($self)){
-		
 		//peers tablaba mentes
 		$pari="UPDATE peers SET connectable='%s', uploaded='%f',downloaded ='%f', to_go ='%d', last_action = NOW(),prev_action ='%s',seeder ='%s' "
 				. ($seeder == "yes" && $self["seeder"] != $seeder ? ", finishedat = " . time() : "") . " WHERE ". $selfwhere;
 		db::futat($pari,$connectable,$uploaded,$downloaded,$left,$prev_action,$seeder);
-		
+
+		//hitnrun táblába mentés
+		$hdown=$hnrl['letoltve']+$downloaded;
+		$hup=$hnrl['feltoltve']+$uploaded;
+		$actualseed=(time()-strtotime($prev_action));
+		$seedtime=$hnrl['futasido']+$actualseed;
+		$remain=(($hdown == 0 && $hnrl['status'] == "2") ? 0 : (($left == 0) ? hnr_calc(($hup/$hdown),$torrentsize,$seedtime) : 172800));
+		$pari = "UPDATE hitnrun SET frissitve='%s',status='%s',letoltve=letoltve+'%f',feltoltve=feltoltve+'%f',futasido=%d,hatravan=%d WHERE uid=%d AND tid=%d";
+		db::futat($pari,date('Y-m-d H:i:s'),($left == 0 ? "2" : "1"),$downloaded,$uploaded,$seedtime,$remain,$userid,$torrentid);
 	}
 	else{		
-		
 		//peerbe rogzites
 		$pari="INSERT INTO peers (connectable, tid, peer_id, ip, port, uploaded, downloaded, to_go, started, last_action, seeder, uid, agent, uploadoffset, downloadoffset, passkey) VALUES"
 										."('%s','%d','%s','%s','%s','%d','%d','%d',NOW(),NOW(),'%s','%d','%s','%d','%d','%s')";
 		db::futat($pari,$connectable, $torrentid,numericDecode($peer_id), $ip, $port, $uploaded, $downloaded, $left, $seeder, $userid, $agent, $uploaded, $downloaded, $passkey);
+		
+		//hitnrun táblába mentés
+		$pari = "INSERT INTO hitnrun (uid,tid,kezdes,frissitve,status,letoltve,feltoltve,futasido,hatravan) VALUES ('%d','%d','%s','%s','%s','%f','%f',%d,%d) ON DUPLICATE KEY UPDATE frissitve='%s',status='%s'";
+		db::futat($pari,$userid,$torrentid,date('Y-m-d H:i:s'),date('Y-m-d H:i:s'),($left == 0 ? "2" : "1"),$downloaded,$uploaded,0,($left == 0 ? 0 : 172800),date('Y-m-d H:i:s'),($left == 0 ? "2" : "1"));
 	}
 }	
 	$updateset[] = "modositva = NOW()";
@@ -326,6 +319,4 @@ else{
 logs::torrent($torrentid,$userid,$uploaded,$downloaded,$uploaded2,$downloaded2,$torrentLogHozAGet  );
 db::hardClose();
 benc_resp_raw($resp);
-
-d::send(false); 
 ?>
