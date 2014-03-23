@@ -13,7 +13,7 @@ class belep{
 		if (!empty($USER['uid'])) {
 
 			//timeout beállítása
-			$temp_suti=($USER['ip_ceck']===true)? Suti_elet : ceil(Suti_elet/4);
+			$temp_suti=($USER['ip_ceck']===true)? Suti_elet : Suti_elet_bizt;
 			
 			//suti elet ellenõrzés
 			if($temp_suti > 0 && !empty($USER['timestamp']) ) {				

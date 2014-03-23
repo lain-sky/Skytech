@@ -33,7 +33,8 @@ define('MAX_TORRENT_SIZE',1000000);
 
 
 
-define('Suti_elet',28800); //a suti életét állítjuk be (60*60*8)=28800sec=> 8h
+define('Suti_elet',2592000); //a suti életét állítjuk be (60*60*24*30)=2592000sec=> 30nap
+define('Suti_elet_bizt',1800); //a biztonságos suti életét állítjuk be (60*30)=1800sec=> 30perc
 define('Suti_kuka',(Suti_elet+600)); //a suti ennyi idõ mulva szemétnek minõsül és törli a rendszer.....
 
 
