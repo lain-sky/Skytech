@@ -76,6 +76,7 @@ switch($r['modul']) {
 
 		$smarty->assign('modul', 'topik_uj');
 		$smarty->assign('modulnev', 'Új topik');
+		$smarty->assign('csoportok', $tema->getAll());
 	break;
 
 	case 'topik_mod':

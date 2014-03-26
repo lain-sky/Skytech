@@ -1,52 +1,53 @@
 <?php
-if(!defined('SZINT1') || SZINT1 !== 666 ) die('Hozzáférés megtagadva'); //osztály biztonság
+if(!defined('SZINT1') || SZINT1 !== 666)
+	die('Hozzáférés megtagadva');
 
-define('SYSTEM_OFF', false);
+define('SYSTEM_OFF', false, true);
 
-define('SQL_DEBUG', false);
-define('SQL_MAIL', true);
-define('JS_COMMPRES', false);
-define('DEBUG_MAIL', 'dave666.david@gmail.com');
-define('LOAD_WIDTH', 550);
+define('SQL_DEBUG', false, true); //kidobni
+define('SQL_MAIL', true, true); //kidobni
+define('JS_COMMPRES', false, true); //megcsinálni
+define('DEBUG_MAIL', 'dave666.david@gmail.com', true); //kell egyáltalán??
+define('LOAD_WIDTH', 550, true);
 
 /*************************/
 /* Adatbázis beállítások */
 /*************************/
-define('DB_USER', 'root'); //az adatbázishoz kapcsolódáshoz használt felhasználói név
-define('DB_PASS', 'usbw'); //jelszó
-define('DB_HOST', 'localhost'); //a host ahová a mysql csatlakozik
-define('DB_DATA', 'sky'); //az oldalhoz tartozó adatbázis neve
+define('DB_USER','skytech', true); //az adatbázishoz kapcsolódáshoz használt felhasználói név
+define('DB_PASS','qwertzuiop123456', true); //jelszó
+define('DB_HOST','localhost', true); //a host ahová a mysql csatlakozik
+define('DB_DATA','skytech', true); //az oldalhoz tartozó adatbázis neve
 
 /************************/
 /* könyvtár beállítások */
 /************************/ 
-define('ROOT_DIR', '');
-define('WEBROOT_DIR', ROOT_DIR);
-define('SABLON_DIR', ROOT_DIR . 'sablon/');
-define('CORE_DIR', ROOT_DIR . 'rendszer/');
-define('CLASS_DIR', CORE_DIR . 'classes/');
-define('MAILER_DIR', CORE_DIR . 'phpmailer/');
-define('CACHE_DIR', ROOT_DIR . 'cache/');
-define('DB_CACHE_DIR', CACHE_DIR . 'db/');
-define('SMARTY_COMPILE_DIR', CACHE_DIR . 'compile/');
-define('JS_PRIVATE_DIR', ROOT_DIR . 'scriptek/');
-define('JS_PUBLIC_DIR', WEBROOT_DIR . 'scriptek/');
-define('TORRENT_PATH', ROOT_DIR . 'torrentek/');
-define('LOGS_PATH', ROOT_DIR . 'logs/');
+define('ROOT_DIR', '', true);
+define('WEBROOT_DIR', ROOT_DIR, true);
+define('SABLON_DIR', ROOT_DIR . 'sablon/', true);
+define('CORE_DIR', ROOT_DIR . 'rendszer/', true);
+define('CLASS_DIR', CORE_DIR . 'classes/', true);
+define('MAILER_DIR', CORE_DIR . 'phpmailer/', true);
+define('CACHE_DIR', ROOT_DIR . 'cache/', true);
+define('DB_CACHE_DIR', CACHE_DIR . 'db/', true);
+define('SMARTY_COMPILE_DIR', CACHE_DIR . 'compile/', true);
+define('JS_PRIVATE_DIR', ROOT_DIR . 'scriptek/', true);
+define('JS_PUBLIC_DIR', WEBROOT_DIR . 'scriptek/', true);
+define('TORRENT_PATH', ROOT_DIR . 'torrentek/', true);
+define('LOGS_PATH', ROOT_DIR . 'logs/', true);
 
 
-define('OLDAL_HIBA', '<b>Kedves felhasználónk!</b><br/><br/>Oldalunk jelenleg karbantartás alatt áll, kérünk nézz vissza késõbb!<br>Várható indulás 2009.11.30!<br>Megértéseteket köszönjük!<br/><br/><i>Sky-Tech Staff</i>',true);
+define('OLDAL_HIBA', '<b>Kedves felhasználónk!</b><br/><br/>Oldalunk jelenleg karbantartás alatt áll, kérünk nézz vissza késõbb!<br>Várható indulás 2009.11.30!<br>Megértéseteket köszönjük!<br/><br/><i>Sky-Tech Staff</i>', true);
 
 /**
 * CACHE
 **/
-define('CACHE_VALTOZOK', 1);
-define('CACHE_HIREK', 2);
-define('CACHE_INDEX_STATS', 3);
-define('CACHE_AKTIV_USER', 4);
-define('CACHE_AKTIV_SZAVAZAS', 5);
-define('CACHE_DOKUMENTACIO', 6);
-define('CACHE_KONYVJELZOK', 7);
+define('CACHE_VALTOZOK', 1, true);
+define('CACHE_HIREK', 2, true);
+define('CACHE_INDEX_STATS', 3, true);
+define('CACHE_AKTIV_USER', 4, true);
+define('CACHE_AKTIV_SZAVAZAS', 5, true);
+define('CACHE_DOKUMENTACIO', 6, true);
+define('CACHE_KONYVJELZOK', 7, true);
 
 $CACHE_CONFIG[CACHE_HIREK] = array(
 	"type"      => "file", 

@@ -1,7 +1,8 @@
 <?php
-if(!defined('SZINT1') || SZINT1!==666 ) die('Hozzáférés megtagadva'); //osztály biztonság
+if(!defined('SZINT1') || SZINT1 !== 666)
+    die('Hozzáférés megtagadva');
 
-require_once( MAILER_DIR . 'class.phpmailer.php');
+require_once(MAILER_DIR . 'class.phpmailer.php');
 
 function sendEmail($Email, $Nick, $Targy, $Uzenet, $f_mail = 'blueedragonnteam@gmail.com', $f_name = 'BD-Team') {
     $from_mail = 'blueedragonnteam@gmail.com';
@@ -15,8 +16,6 @@ function sendEmail($Email, $Nick, $Targy, $Uzenet, $f_mail = 'blueedragonnteam@g
     $mail->CharSet = 'iso-8859-2';
     $mail->SetLanguage('hu', '/PHPMailer/language');
     $mail->WordWrap = 50;
-//    $mail->SMTPDebug = 0; // Enables SMTP debug information [1 = errors and messages | 2 = messages only]
-//    $mail->Debugoutput = 'html';
 
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 587;
@@ -30,13 +29,14 @@ function sendEmail($Email, $Nick, $Targy, $Uzenet, $f_mail = 'blueedragonnteam@g
     $mail->AddReplyTo($f_mail, $f_name);
     $mail->AddAddress($Email, $Nick);
     $mail->Subject = $Targy;
-	$mail->Body = $Uzenet;
+    $mail->Body = $Uzenet;
 
     if($mail->Send()) {
-    	$mail->ClearAddresses();
+        $mail->ClearAddresses();
     	return true;
     } else {
     	return false;
     }
 }
+
 ?>

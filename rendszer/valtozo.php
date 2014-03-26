@@ -1,69 +1,51 @@
 <?php
-if(!defined('SZINT1') || SZINT1 !== 666 ) die('Hozzáférés megtagadva'); //osztály biztonság
+if(!defined('SZINT1') || SZINT1 !== 666)
+        die('Hozzáférés megtagadva');
 
+define('SMARTY_DEF_TEMPLATE_DIR', SABLON_DIR . 'alap/', true);
+define('SMARTY_CACHE', false, true);
+define('SMARTY_CACHE_TIME', '10', true);
+define('SMARTY_DEBUG', false, true);
 
-/***********************/
-/* Smarty beállítások  */
-/***********************/
-define('SMARTY_DEF_TEMPLATE_DIR', SABLON_DIR . 'alap/'); //a smarty template_dir elérése
-define('SMARTY_CACHE', false); //smarty cache lése false/true
-define('SMARTY_CACHE_TIME', '10'); //smarty cache idõ
-define('SMARTY_DEBUG', false); //smarty debug false/true
-
-/******************************/
-/* Oldal adatainak beállítása */
-/******************************/
 define('OLDAL_VERZIO', '1.3' ,true);
-define('OLDAL_FEJLEC','..::' . OLDAL_NEVE . '-' . OLDAL_JELMONDAT . '::..');
+define('OLDAL_FEJLEC','..::' . OLDAL_NEVE . '-' . OLDAL_JELMONDAT . '::..', true);
 define('OLDAL_COPY', 'Copyright &copy; ' . date('Y') . ' ' . OLDAL_NEVE, true);
-define('OLDAL_NYELVE', 'hu');
-define('OLADL_LABLEC_TEXT', OLDAL_NEVE . ' Frontend v' . OLDAL_VERZIO . ' ' . OLDAL_COPY, true);
-define('TORRENT_TRACKER', OLDAL_CIME . "/tracker.php");
-define('MAX_TORRENT_SIZE', 1000000); 
-define('SUTI_ELET',2592000); //a suti életét állítjuk be (60*60*24*30)=2592000sec=> 30nap
-define('SUTI_ELET_BIZT',1800); //a biztonságos suti életét állítjuk be (60*30)=1800sec=> 30perc
-define('SUTI_KUKA',(Suti_elet+600)); //a suti ennyi idõ mulva szemétnek minõsül és törli a rendszer.....
+define('OLDAL_NYELVE', 'hu', true);
+define('OLDAL_LABLEC_TEXT', OLDAL_NEVE . ' Frontend v' . OLDAL_VERZIO . ' ' . OLDAL_COPY, true);
+define('TORRENT_TRACKER', OLDAL_CIME . "/tracker.php", true);
+define('MAX_TORRENT_SIZE', 1000000, true); 
+define('SUTI_ELET', 2592000, true);
+define('SUTI_ELET_BIZT', 1800, true);
+define('SUTI_KUKA',(SUTI_ELET + 600), true);
 
-/*****************/
-/* Hiba szovegek */
-/*****************/
-define('HIBAS_NEV', 'A megadott felhasználói név jelszó páros nem létezik!');
-define('HIBAS_JELSZO', 'A megadott felhasználói név jelszó páros nem létezik!');
-define('HIBA_NO_ID', 'Kérlek jelentkezz be!');
-define('HIBA_TIMEOUT', 'A rendszer tétlenség miatt kiléptetet!');
-define('HIBA_UJRA', 'Az újraellenõrzés nem sikerült lépj be újra');
-define('HIBA_MEGEROSITETLEN', 'A felhasználói fiókod nincs megerõsítve!');
-define('HIBA_NINCS_STATUS', 'A felhasználói fiókod megsérült!!');
-define('HIBA_TOROLT_USER', 'A felhasználói fiókodat törölték!!');
-define('SQL_QUERY_LOG', false );
-define('BELEP_HIBA_NAPI_LIMIT', 7);
+define('HIBAS_NEV', 'A megadott felhasználói név jelszó páros nem létezik!', true);
+define('HIBAS_JELSZO', 'A megadott felhasználói név jelszó páros nem létezik!', true);
+define('HIBA_NO_ID', 'Kérlek jelentkezz be!', true);
+define('HIBA_TIMEOUT', 'A rendszer tétlenség miatt kiléptetet!', true);
+define('HIBA_UJRA', 'Az újraellenõrzés nem sikerült lépj be újra', true);
+define('HIBA_MEGEROSITETLEN', 'A felhasználói fiókod nincs megerõsítve!', true);
+define('HIBA_NINCS_STATUS', 'A felhasználói fiókod megsérült!!', true);
+define('HIBA_TOROLT_USER', 'A felhasználói fiókodat törölték!!', true);
+define('SQL_QUERY_LOG', false, true);
+define('BELEP_HIBA_NAPI_LIMIT', 7, true);
 
-/**********************************/
-/* a minimum rangokat tartalmazza */
-/**********************************/
-define('HIR_ADMIN_MIN_RANG', 9);
-define('SZAVAZAS_ADMIN_MIN_RANG', 9);
-define('FORUM_ADMIN_MIN_RANG', 8);
-define('DOKUMENTUM_ADMIN_MIN_RANG', 8);
-define('TORRENET_ADMIN_MIN_RANG', 8);
-define('TORRENET_ADMIN_HSZ_MIN_RANG', 8);
-define('USER_ADMIN_IN_USERINFO', 8);
-define('USER_EMAIL_NO_HIDDEN_MIN_RANG', 9);
-define('STAFF_MAIL_MIN_RANG', 8);
-define('KERESEK_ADMIN_MIN_RANG', 8);
+define('HIR_ADMIN_MIN_RANG', 9, true);
+define('SZAVAZAS_ADMIN_MIN_RANG', 9, true);
+define('FORUM_ADMIN_MIN_RANG', 8, true);
+define('DOKUMENTUM_ADMIN_MIN_RANG', 8, true);
+define('TORRENET_ADMIN_MIN_RANG', 8, true);
+define('TORRENET_ADMIN_HSZ_MIN_RANG', 8, true);
+define('USER_ADMIN_IN_USERINFO', 8, true);
+define('USER_EMAIL_NO_HIDDEN_MIN_RANG', 9, true);
+define('STAFF_MAIL_MIN_RANG', 8, true);
+define('KERESEK_ADMIN_MIN_RANG', 8, true);
 
-/**********************************/
-/* az oldalhoz tartozó süti nevek */
-/**********************************/
-define('SECTION_COOKIE', 'skysection');
-define('INFOPANEL_COOKIE', 'skyinfopanel');
+define('SECTION_COOKIE', 'skysection', true);
+define('INFOPANEL_COOKIE', 'skyinfopanel', true);
 
-/*********************************/
-/* az oldal változóit tartalmazza*/
-/*********************************/
-$theme = 'alap'; // az alapértelmezett smink
-define('MB', (1024 * 1024));
-define('GB', (1024 * MB));
+$theme = 'alap';
+define('MB', (1024 * 1024), true);
+define('GB', (1024 * MB), true);
 
 $RANGOK = array(
         '1'  => 'Újonc',
@@ -120,6 +102,7 @@ $PONT_EVENTS[42] = array('name' => 'Torrent teljesítése', 'value' => 0 );
 
 
 $OS_TIPUSOK = array(
+		1  => 'Windows 7',
         2  => 'Windows XP',
         3  => 'Windows 98',
         4  => 'Windows 2000',
@@ -314,11 +297,6 @@ $MENU_job = array(
         ),
 );
 
-
-/***********/
-/* Sminkek */
-/***********/
-//a tömbben vannak a sminkek az olv -hoz  amegjelenõ szöveg kell az ert-hez a konyvtár neve 
 $sminkek_tomb = array(
         array('olv' => 'Barna', 'ert' => 'alap'),
 );
