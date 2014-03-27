@@ -1,4 +1,3 @@
-ook
 {$modulnev|section_open}
 <div class="center">
 	<form method="post" action="{$lap_cime}" id="trackersettings">			

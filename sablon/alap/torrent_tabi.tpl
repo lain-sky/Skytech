@@ -71,7 +71,7 @@
 			{if $admin_panel==true}
 			<div class="textlayer">
 				<img src="kinezet/{$ipanel.smink}/t_edit.png" alt="" class="inline" border="0">&nbsp;<a  href="letolt_admin.php?modosit={$t.tid}">Szerkesztés</a>&nbsp;&nbsp;
-				<img src="kinezet/{$ipanel.smink}/t_delete.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}"  class="torrent_del2">Törlés</a>&nbsp;&nbsp;
+				<img src="kinezet/{$ipanel.smink}/t_delete.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}"  class="torrent_del">Törlés</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_hide.png" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}" class="torrent_hidden" alt="{$t.hidden}">Torrent {if $t.hidden=='yes'}megjelenít{else}elrejt{/if}</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_ingyen.gif" alt="" class="inline" border="0">&nbsp;<a  href="{$t.tid}" class="torrent_ingyen" alt="{$t.ingyen}">{if $t.ingyen=='yes'}Normal{else}Ingyen{/if} torrent</a>&nbsp;&nbsp;
 				<img src="kinezet/{$ipanel.smink}/t_lock.png" alt="" class="inline" border="0">&nbsp;<a href="{$t.tid}"  {if $t.hsz_lezarva=='no'}class="hozzaszolas_letiltas">Hozzászólások letiltása{else}class="hozzaszolas_enged">Hozzászólások engedélyezése{/if}</a>&nbsp;&nbsp;

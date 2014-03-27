@@ -29,14 +29,18 @@ class hitnrun {
 
 	function getall() {
 		$pari = "SELECT h.hid, h.tid, h.kezdes, h.frissitve, h.status, h.feltoltve, h.letoltve, h.hatravan, t.name FROM hitnrun h LEFT JOIN torrent t ON h.tid = t.tid WHERE h.uid = '%d'";
-		db::futat($pari, $this->uid);
-		return db::tomb();
+		if(db::futat($pari, $this->uid))
+			return db::tomb();
+		else
+			return false;
 	}
 
 	function getReq() {
-		$pari = "SELECT COUNT(h.hid) AS hr, h.hid, h.tid, h.kezdes, h.frissitve, h.status, h.feltoltve, h.letoltve, h.hatravan, t.name FROM hitnrun h LEFT JOIN torrent t ON h.tid = t.tid WHERE h.uid = '%d' AND h.hatravan > 0";
-		db::futat($pari, $this->uid);
-		return db::tomb();
+		$pari = "SELECT h.hid, h.tid, h.kezdes, h.frissitve, h.status, h.feltoltve, h.letoltve, h.hatravan, t.name FROM hitnrun h LEFT JOIN torrent t ON h.tid = t.tid WHERE h.uid = '%d' AND h.hatravan > 0";
+		if(db::futat($pari, $this->uid))
+			return db::tomb();
+		else
+			return false;
 	}
 
 	function getossz() {

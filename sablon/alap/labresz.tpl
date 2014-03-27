@@ -4,13 +4,13 @@
         <br />
         {php}
                 define('ora_allj',microtime(true));
-                $ido=round((ora_allj-ora_indul)*1000,3);
+                $ido=round((ora_allj-ora_indul)*100,3);
                 $this->assign('ido',$ido);
                 $this->assign('sql',array('num'=>db::$sql_num,'time'=>round(db::$sql_time*1000),3));
-                $this->assign('memo', round( memory_get_usage() / (1024 * 1024), 3 ) );
+                $this->assign('memo', bytes_to_string(round( memory_get_usage(), 3 )));
                 @db::hardClose();
         {/php}
-
+		<p><span class="small"><span class="highlight">Ez az oldal {$ido} mp alatt készült el, benne {$sql.num} SQL lekérdezés {$sql.time} ms alatt. Memóriahasználat: {$memo}</span></span></p>
 </div>
 
 <script type="text/javascript" src="scriptek/alap.js"></script>

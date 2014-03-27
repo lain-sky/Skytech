@@ -100,7 +100,7 @@
 	{'Oldal beállításai'|section_end}
 	
 	
-	{* 'Oldal stílus - Kattints a neked leginkább tetszõre!'|section_open}
+	{'Oldal stílus - Kattints a neked leginkább tetszõre!'|section_open}
 	<table class="stylepreviews">
 
 		<tr>
@@ -113,7 +113,7 @@
 		</tr>
 
 	</table>
-	{'Oldal stílus - Kattints a neked leginkább tetszõre!'|section_end *}
+	{'Oldal stílus - Kattints a neked leginkább tetszõre!'|section_end}
 	
 	{*
 	{'Alapértelmezett kategóriák (ezek jelennek meg alapból a letöltés oldalon)'|section_open}
@@ -220,7 +220,7 @@
 				<tr>
 					<td colspan="2"></td>
 				</tr>
-		<tr>
+		{*<tr>
 			<td class="left">Fiók hibernálása:</td>
 			<td class="right">
 				<input type="checkbox" id="c19" name="hibernate" value="yes"/>&nbsp;<label for="c19">Fiókom hibernálást kérem!</label>&nbsp;
@@ -233,7 +233,7 @@
 				<span class="small"><span class="red">Figyelem!</span> Mialatt fiókod hibernálva van, nem férhetsz hozzá, csak ha feloldod. A feloldáshoz a jelszavad szükséges. Ha a fiókod hibernálva van, három hónap inaktivitás után sem törli a rendszer.</span>
 			</td>
 
-		</tr>
+		</tr>*}
 	</table>
 	{'Biztonsági és fiók beállítások'|section_end}
 	

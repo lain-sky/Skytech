@@ -38,7 +38,7 @@ switch($r['modul']) {
 		}
 
 		//plusz mezõk 
-		for($i = count($tomb); $i < 11; $i++) {
+		for($i = count($tomb) + 1; $i < 11; $i++) {
 			$form[] = array("olv" => "Válasz " . $i,"id" => "valasz[" . $i . "]");
 		}	
 

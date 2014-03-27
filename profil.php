@@ -41,6 +41,7 @@ if(!empty($_POST)){
 		else{
 			$kat=NULL;
 		}
+		
 
 		//rogzítés
 		$user_data_pari="update user_data set privat='%s',nem='%s',orszag='%d',varos='%s',avatar='%s',ladad='%s',ladad_text='%s',megjelen='%s',perold='%s',smink='%s',kategoriak='%s'  where uid='%d'";
@@ -62,8 +63,45 @@ if(!empty($_POST)){
 			if($p['pw1']!==$p['pw2']){
 				$OLDAL[]=hiba_uzi('A megadott jelszavak nem egyeznek meg!');
 			}
+
 			//jelszavak megegyeznek de megnézzük a szintet
 			else{
+				/*
+				$pwslevel=0;			
+				if(strlen($p['pw1']) - strlen(preg_replace("/[0-9]/", "", $p['pw1'])) > 0)	$cond0 = TRUE;
+				if(strlen($p['pw1']) - strlen(preg_replace("/\W/"	, "", $p['pw1'])) > 0) 	$cond1 = TRUE;
+				if(strlen($p['pw1']) - strlen(preg_replace("/[A-Z]/", "", $p['pw1'])) > 0)	$cond2 = TRUE;
+				if(strlen($p['pw1']) - strlen(preg_replace("/[a-z]/", "", $p['pw1'])) > 0)	$cond3 = TRUE;		
+
+				switch(TRUE) {
+					case($cond0 && $cond1 && $cond2 && $cond3):
+						$pwslevel += 3;
+						break;
+					case(($$cond0 && $cond1 && $cond2) || ($cond0 && $cond1 && $cond3) || ($cond0 && $cond2 && $cond3) || ($cond1 && $cond2 && $cond3)):
+						$pwslevel += 2;
+						break;
+					case(($cond0 && $cond1) || ($cond0 && $cond2) || ($cond0 && $cond3) || ($cond1 && $cond2) || ($cond1 && $cond3) || ($cond2 && $cond3)):
+						$pwslevel++;
+						break;
+				}
+
+				if(strpos(strtolower($p['pw1']), strtolower($USER['name'])) === FALSE) {
+					$pwslevel++;
+					if(strlen($p['pw1']) < 6) {
+						$pwslevel = 1;
+					}
+					else {
+						$pwslevel++;
+					}
+				}
+				else {
+					$pwslevel = 1;
+				}
+
+				if($pwslevel < 4){
+					$OLDAL[]=hiba_uzi('Az új jelszavad biztonsági szintje túl alacsony! ('.$pwslevel.')');
+				}
+				*/
 				// a jelszó ok mentés és email ki!!!
 				if( strlen( $p['pw1'] )  < 5 ){
 					$OLDAL[]=hiba_uzi('Az jelszavadnak legalább 5 karakternek kell lennie!!');
@@ -98,19 +136,24 @@ if(!empty($_POST)){
 			}
 		}
 
+		
 		//email csere		
 		if($p['email']!==$USER['email']){
 			if(!empty($p['pw1']) && !empty($p['pw2'])){
 				$OLDAL[]=hiba_uzi("Nem történt e-mail cím csere, mert jelszó cserét is kértél!");
 			}
+
 			else{
 				$OLDAL[]=nyugta('Kidolgozás folymatban');
 			}
 		}		
+		
 	}// egy találtai sor end
 	else{
 		$OLDAL[]=hiba_uzi('Ismeretlen hiba!');
 	}
+
+	
 
 	//useradatok betoltes
 	$userAdat=User::load($USER['uid']);
@@ -120,7 +163,6 @@ if(!empty($_POST)){
 
 	$_SESSION['uzenet']=end($OLDAL);
 	header("Location:".$_SERVER['SCRIPT_NAME']);
-	die('ariranyitas');
 }
 
 $old=new old(); //oldalelemek betöltése
@@ -135,6 +177,7 @@ if(!empty($_SESSION['uzenet'])){
 }
 
 //Privát uzik
+
 $privat_uzi=array(
 	"mindenki"=>"Mindenkitõl",
 	"staff"=>"Csak barátoktól, és a Stafftól",
@@ -189,15 +232,17 @@ $smarty->assign('ladad',$ladad);
 $smarty->assign('ladad_text',$ladad_text);
 
 //oldalbeallitas
+$megjelen_old=$USER['megjelen'];
+var_dump($USER['megjelen']);
+$smarty->assign('megjelen_old',$megjelen_old);
+
 $megjelen=array(
 	'avatar'=>'Avatarok megjelenítése',
 	'ujtorr'=>'"Új torrent" jelzések kézi törlése',
 	'modi'=>'Moderátor jelzések',
 	'gui'=>'GUI animációk engedélyezése'
 );
-$megjelen_old=$USER['megjelen'];
 $smarty->assign('megjelen',$megjelen);
-$smarty->assign('megjelen_old',$megjelen_old);
 
 // odj. egy oldalon
 $perold=array(
@@ -213,9 +258,9 @@ foreach($sminkek_tomb as $key=>$tomb){
 		$sminkek_tomb[$key]['check']=true;
 	}
 }
-
 $smarty->assign('sminkek_tomb',$sminkek_tomb);
 $smarty->assign('email_cim',$USER['email']);
+
 $smarty->assign('OLDAL',$OLDAL);
 $smarty->display('profil.tpl');
 ob_end_flush ();

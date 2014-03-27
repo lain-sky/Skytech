@@ -120,7 +120,7 @@ db::futat("SHOW GLOBAL VARIABLES");
 db::futat("SHOW GLOBAL STATUS");
 $tomb=db::tomb();
 //d($tomb);
-$idotomb=explode(':',date('j:H:i:s',$tomb[250]["Value"]));
+$idotomb=explode(':',date('j:H:i:s',$tomb[251]["Value"]));
 $stat['futasido']=$idotomb[0].' nap '.$idotomb[1].' óra '.$idotomb[2].' perc '.$idotomb[3].' sec ';
 
 
