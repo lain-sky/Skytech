@@ -2,7 +2,6 @@
 
 //uj szavazas és új level..
 $().ready(function(){
-	
 	try{
 		if(ujSzavazas){
 			$.prompt('Új szavazás, megnézed?',{
@@ -14,9 +13,9 @@ $().ready(function(){
 			});	
 		}
 	}catch(err){}
-	
-	try{
-		if(ujUzenet){
+
+	try{	
+		if(ujUzenet){		
 			$.prompt('Új üzeneted érkezet, megnézed?',{
 				buttons: { Igen : true, Nem: false },
 				callback: function(v,m){

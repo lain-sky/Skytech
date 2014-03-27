@@ -1,3 +1,20 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
-
-eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('8 a=7(1,5){$(1).3(6,0.9)};8 4=7(1,5){$(1).3(6,0)};$(\'#g\').h({e:\'i.d\',b:c,f:{j:\'l\',r:s},t:v,u:\'q\',k:\'m\',n:2,o:a,p:4});',32,32,'|suggestionBox||fadeTo|fadeOutSuggestion|suggestionIframe|300|function|var||fadeInSuggestion|delay|500|php|source|fx|fogado_user|Autocomplete|userlista|type|selectClass|slide|selectAutocompleter|minchars|onShow|onHide|autocompleter|duration|400|autofill|helperClass|true'.split('|'),0,{}))
+var fadeInSuggestion = function (suggestionBox, suggestionIframe) {
+        $(suggestionBox).fadeTo(300, 0.9)
+    };
+var fadeOutSuggestion = function (suggestionBox, suggestionIframe) {
+        $(suggestionBox).fadeTo(300, 0)
+    };
+$('#fogado_user').Autocomplete({
+    source: 'userlista.php',
+    delay: 500,
+    fx: {
+        type: 'slide',
+        duration: 400
+    },
+    autofill: true,
+    helperClass: 'autocompleter',
+    selectClass: 'selectAutocompleter',
+    minchars: 2,
+    onShow: fadeInSuggestion,
+    onHide: fadeOutSuggestion
+});

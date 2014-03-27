@@ -1,3 +1,71 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
+$('span.tooltip').ToolTip({
+    className: 'admintooltip',
+    position: 'mouse',
+    delay: 200
+});
+$().ready(function () {
+    try {
+        var container = $('#hiba_div');
+        $("#oldalsettings").validate({
+            errorContainer: container,
+            errorLabelContainer: $("ol", container),
+            wrapper: 'li',
+            meta: "validate",
+            event: "keyup",
+            rules: {
+                oldal_cime: {
+                    url: true
+                },
+                oldal_vakmail: {
+                    email: true
+                },
+                staff_email: {
+                    email: true
+                },
+                oldal_mail_user_id: {
+                    number: true
+                },
+                max_user: {
+                    number: true
+                },
+                meghivo_ido_limit: {
+                    number: true
+                },
+                meghivo_upload_limit: {
+                    number: true
+                },
+                min_adat_ratio: {
+                    number: true
+                },
+            }
+        })
+    } catch (err) {}
+});
 
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$(\'w.v\').u({s:\'t\',x:\'r\',D:C});$().B(3(){z{A 8=$(\'#E\');$("#n").g({h:8,k:$("j",8),m:\'o\',p:"g",q:"l",y:{R:{X:0},W:{d:0},V:{d:0},T:{2:0},U:{2:0},Y:{2:0},F:{2:0},Z:{2:0},}})}13(12){}});3 9(10){$(".11").S();1=0;$(\'.9\').K(3(i){7=5.J;6(7!=\'\'){I(5.G){H\'b\':6(L(7)!=0){5.M();f(\'b\');1=a}Q}}6(1==a)4 1});4 1}3 f(e){$(\'#P\'+e).O();4 a}$(\'#c\').N(3(){4 9(\'c\')});',62,66,'true|mehet|number|function|return|this|if|val|container|myform|false|num|trackersettings|email|tipus|form_hibakezel|validate|errorContainer||ol|errorLabelContainer|keyup|wrapper|oldalsettings|li|meta|event|mouse|className|admintooltip|ToolTip|tooltip|span|position|rules|try|var|ready|200|delay|hiba_div|meghivo_upload_limit|alt|case|switch|value|each|isFinite|focus|submit|show|error_|break|oldal_cime|hide|oldal_mail_user_id|max_user|staff_email|oldal_vakmail|url|meghivo_ido_limit|min_adat_ratio|formId|error|err|catch'.split('|'),0,{}))
+function myform(formId) {
+    $(".error").hide();
+    mehet = true;
+    $('.myform').each(function (i) {
+        val = this.value;
+        if (val != '') {
+            switch (this.alt) {
+            case 'num':
+                if (isFinite(val) != true) {
+                    this.focus();
+                    form_hibakezel('num');
+                    mehet = false
+                }
+                break
+            }
+        }
+        if (mehet == false) return mehet
+    });
+    return mehet
+}
+function form_hibakezel(tipus) {
+    $('#error_' + tipus).show();
+    return false
+}
+$('#trackersettings').submit(function () {
+    return myform('trackersettings')
+});

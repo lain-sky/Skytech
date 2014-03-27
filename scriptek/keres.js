@@ -1,3 +1,45 @@
-/** created by szicsu ( szitama[@]gmial[.]com ) **/
+$('#keres_btn').click(function () {
+    text = $('#keres_text').val();
+    if (text.length < 3) {
+        alert('A legrövidebb keresendõ szó hossza 3 karakter!');
+        return true
+    }
+    cim = url_szuro();
+    if (cim.indexOf('=') != -1) {
+        cim += "&"
+    }
+    cim += "keres=" + text;
+    window.location = cim
+});
+$('#keres_reset').click(function () {
+    cim = url_szuro();
+    window.location = cim
+});
 
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('$(\'#K\').b(5(){7=$(\'#Q\').p();c(7.l<3){I(\'A DöJ zõ Bó C 3 y!\');f o}2=d();c(2.q(\'=\')!=-1){2+="&"}2+="h="+7;m.8=2});$(\'#x\').b(5(){2=d();m.8=2});5 d(){2=8.u+\'?\';6=8.6;e=o;6=6.E(\'?\',\'\');4=6.F("&");N(i=0;i<4.l;i++){c(4[i].q(\'h=\')==-1){2+=(e)?4[i]:\'&\'+4[i];e=k}}f 2}$(\'a.G\').b(5(){g=$(H).L(\'M\');$.P(\'v.t\',{s:g},5(7){9="[r]\\n";9+=7;9+="\\n[/r]\\n";$(\'#j\').p(9)});$(\'#j\').O(\'w\');f k});',53,53,'||cim||tomb|function|search|text|location|kesz||click|if|url_szuro|elso|return|hId|keres||box_content|false|length|window||true|val|indexOf|quote|idezet|php|pathname|forum_hsz|slow|keres_reset|karakter|keresend||sz|hossza|legr|replace|split|idezet_link|this|alert|videbb|keres_btn|attr|alt|for|ScrollTo|post|keres_text'.split('|'),0,{}))
+function url_szuro() {
+    cim = location.pathname + '?';
+    search = location.search;
+    elso = true;
+    search = search.replace('?', '');
+    tomb = search.split("&");
+    for (i = 0; i < tomb.length; i++) {
+        if (tomb[i].indexOf('keres=') == -1) {
+            cim += (elso) ? tomb[i] : '&' + tomb[i];
+            elso = false
+        }
+    }
+    return cim
+}
+$('a.idezet_link').click(function () {
+    hId = $(this).attr('alt');
+    $.post('forum_hsz.php', {
+        idezet: hId
+    }, function (text) {
+        kesz = "[quote]\n";
+        kesz += text;
+        kesz += "\n[/quote]\n";
+        $('#box_content').val(kesz)
+    });
+    $('#box_content').ScrollTo('slow');
+    return false
+});

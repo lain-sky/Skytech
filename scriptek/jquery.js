@@ -2506,3 +2506,91 @@ jQuery.extend({
 	}
 });
 })();
+
+
+
+jQuery.extend({
+    ImpromptuDefaults: {
+        prefix: 'jqi',
+        buttons: {
+            Ok: true
+        },
+        loaded: function () {},
+        submit: function () {
+            return true
+        },
+        callback: function () {},
+        container: 'body',
+        opacity: 0.75,
+        overlayspeed: 'slow',
+        promptspeed: 'fast',
+        show: 'show'
+    },
+    SetImpromptuDefaults: function (o) {
+        jQuery.ImpromptuDefaults = jQuery.extend({}, jQuery.ImpromptuDefaults, o)
+    },
+    prompt: function (m, o) {
+        o = jQuery.extend({}, jQuery.ImpromptuDefaults, o);
+        var c = (jQuery.browser.msie && jQuery.browser.version < 7);
+        var b = (c) ? jQuery(document.body) : jQuery(o.container);
+        var d = '<div class="' + o.prefix + 'fade" id="' + o.prefix + 'fade"></div>';
+        if ((jQuery.browser.msie && jQuery('object, applet').length > 0) || c) d = '<iframe src="" class="' + o.prefix + 'fade" id="' + o.prefix + 'fade"></iframe>';
+        var e = '<div class="' + o.prefix + '" id="' + o.prefix + '"><div class="' + o.prefix + 'container"><div class="' + o.prefix + 'message">' + m + '</div><div class="' + o.prefix + 'buttons" id="' + o.prefix + 'buttons">';
+        jQuery.each(o.buttons, function (k, v) {
+            e += '<button name="' + o.prefix + 'button' + k + '" id="' + o.prefix + 'button' + k + '" value="' + v + '">' + k + '</button>'
+        });
+        e += '</div></div></div>';
+        var f = b.prepend(e).children('#' + o.prefix);
+        var g = b.prepend(d).children('#' + o.prefix + 'fade');
+        var h = function () {
+                return (document.documentElement.scrollTop || document.body.scrollTop) + 'px'
+            };
+        var i = function () {
+                return (document.documentElement.scrollTop || document.body.scrollTop) + Math.round(15 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px'
+            };
+        var j = function () {
+                g.css({
+                    top: h()
+                });
+                f.css({
+                    top: i()
+                })
+            };
+        g.css({
+            position: "absolute",
+            height: (c) ? "100%" : b.height(),
+            width: "100%",
+            top: (c) ? h() : 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 998,
+            display: "none",
+            opacity: o.opacity
+        });
+        f.css({
+            position: (c) ? "absolute" : "fixed",
+            top: (c) ? i() : "30%",
+            left: "50%",
+            display: "none",
+            zIndex: 999,
+            marginLeft: ((((f.css("paddingLeft").split("px")[0] * 1) + f.width()) / 2) * -1)
+        });
+        jQuery('#' + o.prefix + 'buttons').children('button').click(function () {
+            var a = f.children('.' + o.prefix + 'container').children('.' + o.prefix + 'message');
+            var b = o.buttons[jQuery(this).text()];
+            if (o.submit(b, a)) {
+                f.remove();
+                if (c) jQuery(window).unbind('scroll', j);
+                g.fadeOut(o.overlayspeed, function () {
+                    g.remove();
+                    o.callback(b, a)
+                })
+            }
+        });
+        if (c) jQuery(window).scroll(j);
+        g.fadeIn(o.overlayspeed);
+        f[o.show](o.promptspeed, o.loaded);
+        return f
+    }
+});
