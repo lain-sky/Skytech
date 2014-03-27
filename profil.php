@@ -233,7 +233,6 @@ $smarty->assign('ladad_text',$ladad_text);
 
 //oldalbeallitas
 $megjelen_old=$USER['megjelen'];
-var_dump($USER['megjelen']);
 $smarty->assign('megjelen_old',$megjelen_old);
 
 $megjelen=array(
