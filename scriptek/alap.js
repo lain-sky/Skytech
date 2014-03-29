@@ -1,19 +1,7 @@
 /*** ez a script gyujtemény felel az általános scriptekért ****/
 
-//uj szavazas és új level..
+//új level..
 $().ready(function(){
-	try{
-		if(ujSzavazas){
-			$.prompt('Új szavazás, megnézed?',{
-				buttons: { Igen : true, Nem: false },
-				callback: function(v,m){
-					if(v==false)return;
-					window.location.href='index.php';
-				}	     
-			});	
-		}
-	}catch(err){}
-
 	try{	
 		if(ujUzenet){		
 			$.prompt('Új üzeneted érkezet, megnézed?',{
