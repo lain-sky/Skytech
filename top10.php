@@ -1,28 +1,28 @@
 <?php
 ob_start();
-define('SZINT',666);
+define('SZINT', 666);
 require_once('rendszer/mag.php');
-$belep=new belep(); // user belépés chek
-$old=new old(); //oldalelemek betöltése
+$belep = new belep();
+$old = new old();
 
 
-$torrentStats['Legaktívabb']=Stats::torrent('total desc');
-$torrentStats['Leggyorsabb']=Stats::torrent('seb desc');
-$torrentStats['Legtöbb letöltés']=Stats::torrent('letoltve desc');
-$torrentStats['Legtöbb adat']=Stats::torrent('adat desc');
-$torrentStats['Legtöbb Seeder']=Stats::torrent('seed desc');
-$torrentStats['Legtöbb Leech']=Stats::torrent('leech desc');
+$torrentStats['Legaktívabb'] = Stats::torrent('total DESC');
+$torrentStats['Leggyorsabb'] = Stats::torrent('seb DESC');
+$torrentStats['Legtöbb letöltés'] = Stats::torrent('letoltve DESC');
+$torrentStats['Legtöbb adat'] = Stats::torrent('adat DESC');
+$torrentStats['Legtöbb Seeder'] = Stats::torrent('seed DESC');
+$torrentStats['Legtöbb Leech'] = Stats::torrent('leech DESC');
 
-$smarty->assign('torrentek',$torrentStats);
+$userStats['Legtöbbet feltöltõ'] = Stats::user('feltolt DESC');
+$userStats['Legtöbbet letöltõ'] = Stats::user('letolt DESC');
+$userStats['Legtöbbet megosztó'] = Stats::user('arany DESC');
+$userStats['Leggyorsabb feltöltõ'] = Stats::user('felseb DESC');
+$userStats['Leggyorsabb letöltõ'] = Stats::user('leseb DESC');
 
-$userStats['Legtöbbet feltöltõ']=Stats::user('feltolt desc');
-$userStats['Legtöbbet letöltõ']=Stats::user('letolt desc');
-$userStats['Legtöbbet megosztó']=Stats::user('arany desc');
-$userStats['Leggyorsabb feltöltõ']=Stats::user('felseb desc');
-$userStats['Leggyorsabb letöltõ']=Stats::user('leseb desc');
-
-$smarty->assign('userek',$userStats);
-$smarty->assign('OLDAL',$OLDAL);
+$smarty->assign('torrentek', $torrentStats);
+$smarty->assign('userek', $userStats);
+$smarty->assign('OLDAL', $OLDAL);
 $smarty->display('top10.tpl');
-ob_end_flush ();
+ob_end_flush();
+
 ?>

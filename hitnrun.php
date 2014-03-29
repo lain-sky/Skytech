@@ -2,9 +2,9 @@
 ob_start();
 define('SZINT',666);
 require_once('rendszer/mag.php');
-$belep=new belep(); // user belépés chek
-$old=new old(); //oldalelemek betöltése
-$hnr=new hitnrun(); //hitnrun osztály
+$belep = new belep();
+$old = new old();
+$hnr = new hitnrun();
 
 if($g['showall'] == 'true') {
 	$seed = $hnr->getall();//megjelenik
@@ -17,11 +17,12 @@ if($g['showall'] == 'true') {
 	$seed2 = $hnr->getossz();
 	$smarty->assign('osszdb', $seed2['ossz']);
 	$smarty->assign('hrdb', count($seed));
-	$smarty->assign('db', count($seed));	
+	$smarty->assign('db', count($seed));
 }
 
-$smarty->assign('seed',$seed);
-$smarty->assign('OLDAL',$OLDAL);
+$smarty->assign('seed', $seed);
+$smarty->assign('OLDAL', $OLDAL);
 $smarty->display('hitnrun.tpl');
-ob_end_flush ();
+ob_end_flush();
+
 ?>
