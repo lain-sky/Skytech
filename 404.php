@@ -40,7 +40,7 @@
 				</div>
 				<br /><br /><br /><br />
 			</div>
-			<div id="foot"><p class="foot">SkyTech Frontend v1.3 Copyright &copy; 2008 SkyTech</p></div>
+			<div id="foot"><p class="foot">Sky-Tech Frontend v1.3 Copyright &copy; 2014 Sky-Tech - <a href="dokumentacio.php?mit=jogi" title="Jogi nyilatkozat">Jogi nyilatkozat</a></p></div>
 		</div>
 		<div id="banners">
 			<a class="pic" href="http://validator.w3.org/" target="_blank"><img border="0" src="kinezet/alap/banner_xhtml.png" alt="Valid XHTML!"/></a>
