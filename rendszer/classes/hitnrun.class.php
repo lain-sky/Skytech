@@ -5,26 +5,6 @@ if(!defined('SZINT1') || SZINT1 !== 666)
 class hitnrun {
 	function __construct(){
 		$this->uid = $GLOBALS['USER']['uid'];
-		$this->datum = date('Y-m-d H:i:s');
-	}
-
-	function add($tid, $down) {
-		$pari = "INSERT INTO hitnrun(uid, tid, kezdes, frissitve, status, letoltve) VALUES('%d', '%d', '%s', '%s', '%d', '%f')";
-		db::futat($pari, $this->uid, $tid, $this->datum, $this->datum, 1, $down);
-	}
-
-	function update($id, $stat, $up, $down, $req) {
-		$pari = "UPDATE hitnrun SET frissitve = '%s', status = '%d', feltoltve = '%f', letoltve = '%f', hatravan = '%d' WHERE hid = '%d'";
-		return db::futat($pari, $this->datum, $stat, $up, $down, $req, $id);
-	}
-
-	function getegy($uid, $tid) {
-		$pari = "SELECT hid, status, feltoltve, letoltve, hatravan FROM hitnrun WHERE uid = '%d' AND tid = '%d'";
-		db::futat($pari, $uid, $tid);
-		if(db::$sorok == 0)
-			return false;
-		else
-			return db::tomb();
 	}
 
 	function getall() {
