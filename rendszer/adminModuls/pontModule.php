@@ -24,15 +24,15 @@ switch($r['modul']) {
 	break;
 
 	case 'pont_save':
-		$uid = (int)$_POST['pontUid'];
-		$event = (int)$_POST['pontTypes'];
+		$uuid = (int)$p['pontUid'];
+		$event = (int)$p['pontTypes'];
 
-		if(!empty($uid) && !empty($event)) {
-			if($uid != $USER['uid']) {
+		if(!empty($uuid) && !empty($event)) {
+			if($uuid != $USER['uid']) {
 				$pont = new Pont();
-				$pont->addPont($uid, $event);
+				$pont->addPont($uuid, $event);
 				
-				logs::sysLog('pontok', $PONT_EVENTS[$event]['name'], 'uid=' . $uid);
+				logs::sysLog('pontok', $PONT_EVENTS[$event]['name'], 'uid=' . $uuid);
 
 				$_SESSION['uzenet'] = nyugta('A müvelet sikeres');
 			} else {
