@@ -53,9 +53,9 @@
 	{'Statisztika'|section_end}
 	
 	{"Elmúlt idõszakban futtatott torrentek ($osszdb)"|section_open}
-		<table class="skinned" style="width:900px;">
+		<table class="skinned">
 			<tr class="head">
-				<td><a href="{$rendezlink[0]}" title="Rendezés név szerint">Név</a></td>
+				<td style="width: 341px"><a href="{$rendezlink[0]}" title="Rendezés név szerint">Név</a></td>
 				<td><a href="{$rendezlink[1]}" title="Rendezés kezdés ideje szerint">Start</a></td>
 				<td><a href="{$rendezlink[2]}" title="Rendezés utolsó frissítés ideje szerint">Frissítve</a></td>
 				<td><a href="{$rendezlink[3]}" title="Rendezés állapot szerint">Status</a></td>
