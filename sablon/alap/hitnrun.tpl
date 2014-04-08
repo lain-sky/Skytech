@@ -55,14 +55,14 @@
 	{"Elmúlt idõszakban futtatott torrentek ($osszdb)"|section_open}
 		<table class="skinned" style="width:900px;">
 			<tr class="head">
-				<td>Név</td>
-				<td>Start</td>
-				<td>Frissítve</td>
-				<td>Status</td>
-				<td>Fel</td>
-				<td>Le</td>
-				<td>Hátravan</td>
-				<td>Arány</td>
+				<td><a href="{$rendezlink[0]}" title="Rendezés név szerint">Név</a></td>
+				<td><a href="{$rendezlink[1]}" title="Rendezés kezdés ideje szerint">Start</a></td>
+				<td><a href="{$rendezlink[2]}" title="Rendezés utolsó frissítés ideje szerint">Frissítve</a></td>
+				<td><a href="{$rendezlink[3]}" title="Rendezés állapot szerint">Status</a></td>
+				<td><a href="{$rendezlink[4]}" title="Rendezés feltöltött adatmennyiség szerint">Fel</a></td>
+				<td><a href="{$rendezlink[5]}" title="Rendezés letöltött adatmennyiség szerint">Le</a></td>
+				<td><a href="{$rendezlink[6]}" title="Rendezés hátralévõ idõ szerint">Hátravan</a></td>
+				<td><a href="{$rendezlink[7]}" title="Rendezés arány szerint">Arány</a></td>
 			</tr>		
 			{if $db > 0}
 				{foreach from=$seed key=k item=s }
@@ -74,7 +74,7 @@
 					<td>{$s.feltoltve|b_to_s}</td>
 					<td>{$s.letoltve|b_to_s}</td>
 					<td>{$s.hatravan|t_to_i}</td>
-					<td>{if $s.feltoltve/$s.letoltve ==0}nincs{else}{$s.feltoltve/$s.letoltve|string_format:"%.3f"}{/if}</td>
+					<td>{if $s.feltoltve/$s.letoltve == 0}nincs{else}{$s.feltoltve/$s.letoltve|string_format:"%.3f"}{/if}</td>
 				</tr>
 				{/foreach}
 			{else}
