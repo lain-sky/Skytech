@@ -68,7 +68,7 @@
 				{foreach from=$seed key=k item=s }
 				<tr class="flash">
 					<td align=left><a href="adatlap.php?id={$s.tid}" target="_blank">{$s.name}</a></td>
-					<td>{$s.kezdes}</td>
+					<td>{$s.kezdes|d_to_s}</td>
 					<td>{$s.frissitve|d_to_s}</td>
 					<td>{if $s.status == '0'}Stopped{elseif $s.status == '1'}Leech{else}Seed{/if}</td>
 					<td>{$s.feltoltve|b_to_s}</td>
