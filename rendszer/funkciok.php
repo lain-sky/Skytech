@@ -126,7 +126,9 @@ function time_to_string($mikor) {
 
 function date_to_string($mikor) {
 	$stamp = time() - strtotime($mikor);
-	if($stamp >= 3600)
+	if($stamp >= 86400)
+		return (int)($stamp / 86400) . ' napja';
+	elseif($stamp >= 3600)
 		return (int)($stamp / 3600) . ' órája';
 	elseif($stamp >= 60)
 		return (int)($stamp / 60) . ' perce';
