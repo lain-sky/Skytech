@@ -49,6 +49,7 @@ class User {
 			"(SELECT uj_torrent FROM user_data tt WHERE tt.uid = u.uid) AS uj_torrent, ".
 			"(SELECT nem FROM user_data tn WHERE tn.uid = u.uid) AS neme, ".
 			"(SELECT SUM(po.pont) FROM pontok po WHERE po.uid = u.uid) AS pontok ".
+			"(SELECT SUM(to.tid) FROM torrent to WHERE to.uid = u.uid) AS torrentek ".
 			"FROM users u WHERE u.uid = '%d'";
 		db::futat($sql, $uid);
 		$tomb = db::tomb();
@@ -82,6 +83,7 @@ class User {
 		$kesz['megjelen'] = explode('|', $t['megjelen']);
 		$kesz['perold'] = explode('|', $t['perold']);
 		$kesz['pontok'] = $t['pontok'];
+		$kesz['torrentek'] = $t['torrentek'];
 		$kesz['gui'] = $kesz['megjelen'][3];
 
 		return $kesz;
