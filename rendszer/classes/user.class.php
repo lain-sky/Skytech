@@ -47,6 +47,7 @@ class User {
 			"(SELECT perold FROM user_data ta WHERE ta.uid = u.uid) AS perold, ".
 			"(SELECT kategoriak FROM user_data tk WHERE tk.uid = u.uid) AS kategoriak, ".
 			"(SELECT uj_torrent FROM user_data tt WHERE tt.uid = u.uid) AS uj_torrent, ".
+			"(SELECT nem FROM user_data tn WHERE tn.uid = u.uid) AS neme, ".
 			"(SELECT SUM(po.pont) FROM pontok po WHERE po.uid = u.uid) AS pontok ".
 			"FROM users u WHERE u.uid = '%d'";
 		db::futat($sql, $uid);
@@ -75,6 +76,7 @@ class User {
 		$kesz['hszszam'] = $t['hozzaszolas'];
 		$kesz['tor_hszszam'] = $t['torrent_hozzaszolas'];
 		$kesz['uj_torrent'] = $t['uj_torrent'];
+		$kesz['neme'] = $t['neme'];
 		$kesz['kategoriak_text'] = $t['kategoriak'];
 		$kesz['kategoriak_tomb'] = explode(',', $t['kategoriak']);
 		$kesz['megjelen'] = explode('|', $t['megjelen']);
