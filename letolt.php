@@ -24,6 +24,8 @@ if(!empty($p['keres_text'])) {
 		$where[] = " ((SELECT COUNT(*) FROM peers p WHERE p.tid = t.tid) <1 ) ";
 	elseif($p['keres_status'] == 'ingyen')
 		$where[] = " t.ingyen = 'yes' ";
+	elseif($p['keres_status'] == 'mod')
+		$where[] = " t.admin_id IS NULL OR (t.admin_megj IS NOT NULL AND t.admin_megj != '') ";
 } else {
 	if(!empty($g['tipus']) || !empty($g['uid']) || !empty($g['mind']) || !empty($g['ingyen'])) {
 		if(!empty($g['tipus']))
@@ -123,6 +125,8 @@ $statusTomb[] = array('value' => 'mind', 'text' => 'Akitv és inaktív');
 $statusTomb[] = array('value' => 'aktiv', 'text' => 'Aktiv torrentek');
 $statusTomb[] = array('value' => 'inaktiv', 'text' => 'Inaktív torrentek');
 $statusTomb[] = array('value' => 'ingyen', 'text' => 'Ingyen torrentek');
+if($USER['rang'] >= 8)
+	$statusTomb[] = array('value' => 'mod', 'text' => 'Ellenõrizetlen és hibás');
 
 if(!empty($p['keres_status'])) {
 	foreach($statusTomb as $key => $val) {
