@@ -12,9 +12,6 @@ class lapozo {
 	private $oldalDB = false;
 
 	function __construct($cim, $inp = 20, $valt = 'page') {
-		if(!empty($inp))
-			$inp = 20;
-
 		$this->inp = $inp;
 		$this->valt = $valt;
 		$this->cim = $this->cimTakarit($cim);
