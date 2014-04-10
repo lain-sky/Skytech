@@ -145,7 +145,7 @@ if(!empty($p['tname']) && is_numeric($p['tid']) && ($USER['rang'] >= TORRENET_AD
 		} else {
 			Nfo::del($p['tid']);
 			if(Nfo::add($nfoTemp, $nfoName, $p['tid']))
-				$torrent->update($rogzitett, array('nfo_name' => 'yes'), false);
+				$torrent->update($p['tid'], array('nfo_name' => 'yes'), false);
 		}
 	}
 
