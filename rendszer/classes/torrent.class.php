@@ -168,10 +168,6 @@ class Torrent {
 		return $tt;
 	}
 
-	function setTorrentMegnez($id) {
-		db::futat("UPDATE torrent SET megnezve = megnezve + 1 WHERE tid = '%d'", $id);
-	}
-
 	function delTorrent($id) {
 		if($GLOBALS['USER']['rang'] < TORRENET_ADMIN_MIN_RANG)
 			return false;
@@ -183,7 +179,7 @@ class Torrent {
 
 	function fullLoad($where = array(), $order = '', $limit = '', $dekod = 1) {
 		$sql = "SELECT SQL_CALC_FOUND_ROWS 
-				t.tid, t.uid, t.name, t.nfo_name, t.datum, UNIX_TIMESTAMP(t.datum) AS tdatum, t.meret, t.letoltve, t.seeders, t.leechers, t.megnezve, t.kid,
+				t.tid, t.uid, t.name, t.nfo_name, t.datum, UNIX_TIMESTAMP(t.datum) AS tdatum, t.meret, t.letoltve, t.seeders, t.leechers, t.kid,
 				t.kep1, t.kep2, t.kep3, t.megjelen, t.honlap, t.megjegyzes, t.eredeti, t.admin_megj, t.admin_datum, t.admin_id, t.hsz_lezarva, t.ingyen, t.hidden, t.anonymous, t.keres_id, t.keres_jovairva,
 				(SELECT COUNT(*) FROM torrent_files WHERE tid = t.tid) AS fajldb,
 				(SELECT name FROM users u WHERE u.uid = t.uid) AS username,

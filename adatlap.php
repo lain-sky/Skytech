@@ -27,7 +27,6 @@ if(!is_numeric($g['id']) || empty($g['id'])) {
 			unset($_SESSION['jelentes']);
 		}
 
-		$torrent->setTorrentMegnez($g['id']);
 		$ttomb = $torrent->fullLoad(array('t.tid = ' . $g['id']));
 		$smarty->assign('t', $ttomb[0]);
 
