@@ -20,14 +20,10 @@ if(empty($g['id']) || $torrent->checkTorrentById($g['id']) === false) {
 	$dict = bdec_file($torrent_file, (1024 * 1024));
 
 	$dict['value']['announce']['value'] = $torrent->getTrackerUrl();
-	$dict['value']['info']['value']['private'] = bdec('i1e');
 	$dict['value']['announce']['string'] = strlen($dict['value']['announce']['value']) . ':' . $dict['value']['announce']['value'];
 	$dict['value']['announce']['strlen'] = strlen($dict['value']['announce']['string']);
-	unset($dict['value']['announce-list']);
-	unset($dict['value']['nodes']);
 	$dict = bdec(benc($dict));
 	$data = benc($dict);
-	list($ann, $info) = dict_check($dict, 'announce(string):info');
 
 	header('Expires: Tue, 1 Jan 1980 00:00:00 GMT');
 	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
