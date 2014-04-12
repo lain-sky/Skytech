@@ -24,6 +24,20 @@ class Torrent {
 	public $nfo_temp;
 	public $anonymous = 'no';
 	public $keresId;
+	public $name_alt;
+	public $name_alt2;
+	public $borito;
+	public $rendezo;
+	public $szereplok;
+	public $orszag;
+	public $hossz;
+	public $cimke;
+	public $imdblink;
+	public $imdbpont;
+	public $portlink;
+	public $portpont;
+	public $trailer;
+	public $youtube;
 
 	function __construct() {
 		$this->uid = $GLOBALS['USER']['uid'];
@@ -33,8 +47,8 @@ class Torrent {
 	}
 
 	function add() {
-		$pari = "INSERT INTO torrent (kid, uid, name, search_text, datum, fajl_db, meret, kep1, kep2, kep3, megjelen, megjegyzes, eredeti, info_hash, nfo_name, honlap, anonymous, keres_id) VALUES ".
-								 "('%d', '%d', '%s', '%s', '%s', '%d', '%f', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')";
+		$pari = "INSERT INTO torrent (kid, uid, name, search_text, datum, fajl_db, meret, kep1, kep2, kep3, megjelen, megjegyzes, eredeti, info_hash, nfo_name, honlap, anonymous, keres_id, name_alt, name_alt2, borito, rendezo, szereplok, orszag, hossz, cimke, imdblink, imdbpont, portlink, portpont, trailer, youtube) VALUES ".
+								 "('%d', '%d', '%s', '%s', '%s', '%d', '%f', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s', '%f', '%s', '%f', '%s', '%s')";
 		$ok = db::futat($pari
 					,$this->kid
 					,$this->uid
@@ -54,6 +68,20 @@ class Torrent {
 					,$this->honlap
 					,$this->anonymous
 					,$this->keresId
+					,$this->name_alt
+					,$this->name_alt2
+					,$this->borito
+					,$this->rendezo
+					,$this->szereplok
+					,$this->orszag
+					,$this->hossz
+					,$this->cimke
+					,$this->imdblink
+					,$this->imdbpont
+					,$this->portlink
+					,$this->portpont
+					,$this->trailer
+					,$this->youtube
 					);
 		if($ok)
 			return $this->fajlRogzit(db::$id);
