@@ -179,7 +179,8 @@ class Torrent {
 	function fullLoad($where = array(), $order = '', $limit = '', $dekod = 1) {
 		$sql = "SELECT SQL_CALC_FOUND_ROWS 
 				t.tid, t.uid, t.name, t.nfo_name, t.datum, UNIX_TIMESTAMP(t.datum) AS tdatum, t.meret, t.letoltve, t.seeders, t.leechers, t.kid,
-				t.kep1, t.kep2, t.kep3, t.megjelen, t.honlap, t.megjegyzes, t.eredeti, t.admin_megj, t.admin_datum, t.admin_id, t.hsz_lezarva, t.ingyen, t.hidden, t.anonymous, t.keres_id, t.keres_jovairva,
+				t.kep1, t.kep2, t.kep3, t.megjelen, t.honlap, t.megjegyzes, t.eredeti, t.admin_megj, t.admin_datum, t.admin_id, t.hsz_lezarva, t.ingyen,
+				t.hidden, t.anonymous, t.keres_id, t.keres_jovairva,
 				(SELECT COUNT(*) FROM torrent_files WHERE tid = t.tid) AS fajldb,
 				(SELECT name FROM users u WHERE u.uid = t.uid) AS username,
 				(SELECT rang FROM users u WHERE u.uid = t.uid) AS rang,
@@ -190,7 +191,8 @@ class Torrent {
 				(SELECT COUNT(*) FROM peers p WHERE p.tid = t.tid AND seeder='yes') AS seed,
 				(SELECT COUNT(*) FROM peers p WHERE p.tid = t.tid AND seeder='no') AS leech,
 				(SELECT COUNT(*) FROM torrent_hsz p WHERE p.tid = t.tid) AS comment,
-				(SELECT COUNT(*) FROM torrent_konyv p WHERE p.tid = t.tid AND p.uid = '" . $GLOBALS['USER']['uid'] . "') AS konyv
+				(SELECT COUNT(*) FROM torrent_konyv p WHERE p.tid = t.tid AND p.uid = '" . $GLOBALS['USER']['uid'] . "') AS konyv,
+				(SELECT COUNT(*) FROM torrent_koszi p WHERE p.tid = t.tid) AS thx
 				FROM torrent t";
 
 		$tomb = array();
