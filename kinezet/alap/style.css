@@ -4,7 +4,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 	color: #c6c1b7;
 	text-align: center;
 	background-image: url('background.png');
@@ -83,7 +83,7 @@ p {
 	margin: 0px;
 	padding: 0px;
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 	color: #c6c1b7;
 }
 
@@ -109,7 +109,7 @@ h3 {
 	margin: 3px 4px 3px 4px;
 	padding: 0px;
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 	font-weight: normal;
 }
 
@@ -125,7 +125,7 @@ a:hover, a:hover.visited {
 }
 
 table {
-	font-size: 10pt;
+	font-size: 12px;
 }
 
 /* FORM elemek */
@@ -138,7 +138,7 @@ form {
 input {
 	outline-style: none;
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 }
 
 input.skinned {
@@ -157,7 +157,7 @@ select.skinned {
 	border: 1px solid #726d5f;
 	color: #c6b5a2;
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 }
 
 div.textarea {
@@ -175,7 +175,7 @@ div.textarea textarea, textarea.textarea {
 	padding: 0px;
 	overflow: auto;
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 }
 
 label {
@@ -196,7 +196,7 @@ div#menu ul {
 
 div#menu li {
 	font-family: tahoma, sans-serif;
-	font-size: 10pt;
+	font-size: 12px;
 	font-weight: bold;
 	display: inline;
 	padding-left: 20px;
@@ -578,7 +578,7 @@ div.bbtoolbar_cell select {
 /* Browse */
 
 a.browser {
-	font-size: 10pt;
+	font-size: 12px;
 	font-weight: normal;
 }
 
@@ -685,7 +685,7 @@ div.t_name {
 	position: relative;
 }
 
-span.tn_part1 {
+div.tn_part1 {
 	padding-left: 23px;
 }
 
@@ -696,11 +696,12 @@ div.tn_part2 {
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
+	margin: 6px 5px 0 0;
 }
 
 div.tn_part3 {
 	position: absolute;
-	left: 420px;
+	left: 395px;
 	top: 0px;
 	width: 100px;
 	height: 16px;
@@ -728,8 +729,8 @@ td.t_upby {
 }
 
 div.t_info {
-	width: 926px;
-	max-width: 926px;
+	width: 900px;
+	max-width: 900px;
 	display: none;
 }
 
@@ -1626,9 +1627,6 @@ table.stats {
 	z-index:10 !important;
 }
 
-
-
-
 div#ponts {
 display:block !important;
 	position: absolute;
@@ -1638,12 +1636,38 @@ display:block !important;
 	text-align:center;
 }
 
+div.torrent_leiras  {
+    background-color: #303030;
+    border: 1px dotted #5D5954;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: left;
+    width: 700px;
+}
 
+img.poster {
+    border: 1px solid #828282;
+    display: none;
+    margin-left: -13px;
+    margin-top: 15px;
+    max-height: 200px;
+    position: absolute;
+	z-index: 999;
+}
 
+td.torrent_cim {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+}
 
+td.adatbold {
+    border-bottom: 1px dotted #808080;
+    font-weight: bold;
+	font-size: 12px;
+}
 
-
-
-
-
-
+td.adat {
+    border-bottom: 1px dotted #808080;
+	font-size: 12px;
+}
