@@ -209,6 +209,7 @@ class Torrent {
 				t.tid, t.uid, t.name, t.nfo_name, t.datum, UNIX_TIMESTAMP(t.datum) AS tdatum, t.meret, t.letoltve, t.seeders, t.leechers, t.kid,
 				t.kep1, t.kep2, t.kep3, t.megjelen, t.honlap, t.megjegyzes, t.eredeti, t.admin_megj, t.admin_datum, t.admin_id, t.hsz_lezarva, t.ingyen,
 				t.hidden, t.anonymous, t.keres_id, t.keres_jovairva,
+				t.name_alt, t.name_alt2, t.borito, t.rendezo, t.szereplok, t.orszag, t.hossz, t.cimke, t.imdblink, t.imdbpont, t.portlink, t.portpont, t.trailer, t.youtube,
 				(SELECT COUNT(*) FROM torrent_files WHERE tid = t.tid) AS fajldb,
 				(SELECT name FROM users u WHERE u.uid = t.uid) AS username,
 				(SELECT rang FROM users u WHERE u.uid = t.uid) AS rang,
