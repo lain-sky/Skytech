@@ -157,12 +157,11 @@ class Torrent {
 	function getFileList($id) {
 		$sql = "SELECT name, size FROM torrent_files WHERE tid = '%d'";
 		db::futat($sql, $id);
-		$tt = "<table style='width:916px;' class='skinned'><tr class='head'><td>Név</td><td>Kiterjesztés</td><td>Típus</td><td>Méret</td></tr>";
+		$tt = '<table width="100%"><tr><td class="adatbold">Fájlok</td></tr></table>';
+		$tt .= "<table style='width:675px;' class='skinned'><tr class='head'><td>Név</td><td>Méret</td></tr>";
 		foreach(db::tomb() as $key => $val) {
 			$tt .= "<tr class='flash'>\n<td class='left'style='width: 550px;'>" . $val['name'] . "</td>";
 			$kit = explode('.', $val['name']);
-			$tt .= "<td>" . $kit[count($kit)-1] . "</td>";
-			$tt .= "<td>" . getfiletype($kit[count($kit)-1]) . "</td>";
 			$tt .= "<td>" . bytes_to_string($val['size']) . "</td>\n</tr>\n";
 		}
 		return $tt;
