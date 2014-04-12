@@ -133,7 +133,7 @@ function date_to_string($mikor) {
 	elseif($stamp >= 60)
 		return (int)($stamp / 60) . ' perce';
 	else
-		return '1 perce';
+		return 'most';
 }
 
 function ido($str) {
