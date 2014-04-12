@@ -66,6 +66,8 @@ if(db::$sorok != 1) {
 		$smarty->assign('mailNoHidden', false);
 
 	$userinfo['barat'] = isBarat($g['uid']);
+	$userinfo['reg_date'] = str_replace('.', '-', $userinfo['reg_date']);
+	$userinfo['vizit'] = str_replace('.', '-', $userinfo['vizit']);
 	$smarty->assign('uinfo', $userinfo);
 	$smarty->assign('user_neve', $userinfo['name'] . ' profilja');
 	$smarty->assign('ladad', User::getLadad($g['uid'], true));
