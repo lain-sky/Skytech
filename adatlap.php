@@ -28,8 +28,12 @@ if(!is_numeric($g['id']) || empty($g['id'])) {
 		}
 
 		$ttomb = $torrent->fullLoad(array('t.tid = ' . $g['id']));
+		$sql = "SELECT uploaded AS fel, downloaded AS le, UNIX_TIMESTAMP(last_action) AS time_end, UNIX_TIMESTAMP(started) AS time_start FROM peers WHERE tid = '%d'";
+		db::futat($sql, $g['id']);
+		$peer = db::elso_sor();
+		$tk = $peer['time_end'] - $peer['time_start'];
+		$ttomb[0]['seb'] = @round(($p['fel'] + $p['le']) / $tk);
 		$smarty->assign('t', $ttomb[0]);
-
 		$smarty->assign('koszi', $torrent->torrentKosziLista($g['id']));
 
 		$uj_hsz = ($ttomb[0]['hsz_lezarva'] == 'no') ? true : false;
