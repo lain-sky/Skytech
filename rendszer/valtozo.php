@@ -284,7 +284,8 @@ $MENU_bal = array(
         ),
 );
 
-$MENU_job = array(
+
+$MENU_job_admin = array(
         array(
                 "olvas" => "Admin",
                 "cim"   => "skytech.php",
@@ -295,7 +296,15 @@ $MENU_job = array(
                 "cim"   => "belep.php?logout=true",
                 "class" => "kilep"
         ),
-);
+	);
+
+$MENU_job = array(
+        array(
+                "olvas" => "Kilép",
+                "cim"   => "belep.php?logout=true",
+                "class" => "kilep"
+        )
+	);
 
 $sminkek_tomb = array(
         array('olv' => 'Barna', 'ert' => 'alap'),

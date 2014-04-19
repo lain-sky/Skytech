@@ -11,6 +11,8 @@ class old {
 	function menu() {
 		$menu_kesz = '<ul style="float:left;">';
 
+		$jobbos_menu = ($GLOBALS['USER']['rang'] >= 8 ? $GLOBALS["MENU_job_admin"] : $GLOBALS["MENU_job"]);
+		
 		foreach($GLOBALS["MENU_bal"] as $elem) {
 			$menu_kesz .= '<li><a href="' . $elem['cim'] . '" target="' . $this->hol . '">' . $elem['olvas'] . '</a></li>';
 		}
@@ -18,7 +20,7 @@ class old {
 		$menu_kesz .= '</ul>';
 		$menu_kesz .= '<ul style="float:right;padding-right:20px;">';
 
-		foreach($GLOBALS["MENU_job"] as $elem) {
+		foreach($jobbos_menu as $elem) {
 			$menu_kesz .= '<li><a href="' . $elem['cim'] . '" target="' . $this->hol . '">' . $elem['olvas'] . '</a></li>';
 		}
 
@@ -35,7 +37,7 @@ class old {
 
 		$menu_kek .= '<li class="nav_space"></li>';
 
-		foreach($GLOBALS["MENU_job"] as $elem) {
+		foreach($jobbos_menu as $elem) {
 			$menu_kek .= '<li><a class="' . $elem['class'] . '" href="' . $elem['cim'] . '" target="' . $this->hol . '">' . $elem['olvas'] . '</a></li>';
 		}
 
